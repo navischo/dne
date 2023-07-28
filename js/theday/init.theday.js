@@ -2,6 +2,7 @@ import { swiper } from "../swiper/swiper.module.js";
 import { win77 } from "../dne-cli.js";
 import { initGradient } from "./gradient.theday.js";
 import { pokeButtonMarkup } from "../utils/pokeButtonMarkup.js";
+import {getDungeNameInASCII} from "../utils/getDungeNameInASCII.js";
 
 
 const getPortalElement = () => {
@@ -12,13 +13,14 @@ const getPortalElement = () => {
     portal.innerHTML = `<img src="img/portal.gif">`;
     portal.style.display = "none";
 
+    // portal.dataset.to = win77.game.event.settings.dungeObj.name;
+
     return portal;
 }
 
 const thedayMarkup = `
-<!--setup-->
+<code id="ascii-title" class="theday__dunge-title"></code>
 <div id="main-scene">
-    
     <div class="swiper executive">
         <div id="executive" class="swiper-wrapper"></div>
     </div>
@@ -38,9 +40,19 @@ ${pokeButtonMarkup}
 
 
 const initTheday = () => {
+    console.log(`${win77.game.player.id} starts an Event in dunge by name..`, win77);
 
-    console.log(`${win77.game.player.id} starts an Event`, win77);
+    const dungeASCII = getDungeNameInASCII(win77.game.event.settings.dungeObj.name);
+    const dungeTitle = document.querySelector(`#ascii-title`);
+    dungeTitle.innerHTML = `${win77.game.event.settings.dungeObj.name}`;
+    dungeTitle.classList.add("--visible");
+    setTimeout(() => {
+        dungeTitle.classList.remove("--visible");
+    }, 5000);
+    console.log(dungeASCII);
+
     initGradient();
+
     document.querySelector(".js-rick-portal").style.display = "block";
     win77.pokeButton.dia.useSmithsCards();
 }

@@ -26,10 +26,28 @@
     background: white;
 }
 
+.card-catalog-wrap.--styled {
+    background-color: var(--colors-bg--500);
+    background-image: radial-gradient( ellipse at 33% 10%, #461616 0%, transparent 75% );
+    background-repeat: no-repeat;
+    color: var(--colors-on_bg--500);
+}
+
 .js-cards-catalog {
-    width: 920px;
+    position: relative;
+
+    width: 930px;
     max-width: max-content!important;
     justify-content: center;
+}
+
+.js-filter-by-collection {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    transform: translateX(-100%);
+
+    margin: 0!important;
 }
 
 .build .js-cards-catalog[data-hash="hud"] {
@@ -60,11 +78,13 @@ body .units {
 }
 
 body[data-hash="cards"] .units {
-    color: black;
+    color: white;
+    /*color: black;*/
 }
 
 body[data-hash="cards"] .inventory {
-    color: black;
+    color: white;
+    /*color: black;*/
     text-shadow: none;
 }
 
@@ -73,7 +93,7 @@ body[data-hash="cards"] .js-car-name {
 }
 
 body[data-hash="admin"] .inventory,
-body[data-hash="event"] .inventory {
+body[data-hash="event"] .inventory:not(.project-obj) {
     display: none;
 }
 
@@ -93,12 +113,25 @@ body.hide-hud .player-obj,
 body.hide-hud .inventory,
 body.hide-hud .js-toggle-catalog-controls,
 body.hide-hud .swiper-button-next,
-body.hide-hud .swiper-button-prev {
+body.hide-hud #table,
+body.hide-hud .swiper-button-prev,
+body.hide-hud .hud-btn--fixed {
     display: none;
 }
 
-body[data-hash="cards"] .nav__item-sublist {
+body[data-hash="cards"] .nav__item-sublist:not("--right") {
     visibility: visible;
     opacity: 1;
     transform: translateX(-100%);
+}
+
+.hud-btn--fixed {
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s ease;
+}
+
+body[data-hash="play"] .hud-btn--fixed {
+    visibility: visible;
+    opacity: 1;
 }

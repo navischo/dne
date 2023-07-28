@@ -424,11 +424,7 @@
     background: #f1f0ec;
 }
 
-#dne-card-i-sinabon .card__footer {
-    position: absolute;
-    bottom: 0;
-    z-index: 2;
-}
+
 
 #dne-card-i-sinabon .card__price {
     color: white;
@@ -946,7 +942,7 @@ img {
     display: flex;
     justify-content: space-between;
 
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
 }
 
 .hud-top--fixed {
@@ -1025,7 +1021,7 @@ img {
     color: red;
     background: black;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     text-align: center;
     text-transform: uppercase;
 }
@@ -1082,7 +1078,7 @@ img {
 
     font-size: 20px;
     line-height: 1.6;
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
     color: white;
 }
 
@@ -1201,7 +1197,7 @@ img {
 .card__title {
     margin: 0;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     word-break: break-word;
 }
 
@@ -1219,7 +1215,7 @@ img {
 }
 
 .card__price {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 .card__limits {
@@ -1266,7 +1262,7 @@ img {
 .card__bonus,
 .card__budget,
 .card__profit {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     font-size: 1.2em;
 }
 
@@ -1311,14 +1307,14 @@ img {
 }
 
 h2 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     word-break: break-word;
 }
 
 .card-page__budget,
 .card-page__profit,
 .card-page__level {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 .card-page__id {
@@ -1377,7 +1373,7 @@ h2 {
     margin: 0;
     padding-top: 8px;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     color: white;
     text-align: center;
     transform: translateX(-50%);
@@ -1390,7 +1386,7 @@ h2 {
     padding: 0;
     border: 0;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     color: white;
     background: transparent;
     box-shadow: none;
@@ -1522,67 +1518,6 @@ h2 {
   text-shadow: 1px 0px 4px #ff6d65;
 }
 
-.fw-check-list {
-  margin: 16px 0;
-}
-
-.fw-check-list > .fw-check-row:first-child {
-  box-shadow: inset 0 1px 0 0 #5e0c08;
-}
-
-.fw-check-list > .fw-check-row:last-child {
-  box-shadow: inset 0 -1px 0 0 #5e0c08;
-}
-
-.fw-check-list > .fw-check-row:first-child,
-.fw-check-list > .fw-check-row:last-child {
-  box-shadow: inset 0 -1px 0 0 #5e0c08, inset 0 1px 0 0 #5e0c08;
-}
-
-.fw-check-row {
-    width: 100%;
-  padding: 20px 26px;
-  padding-left: 26px;
-  border: none;
-
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1em;
-  color: #53d3dc;
-  text-transform: uppercase;
-  letter-spacing: -1.2px;
-  text-shadow: 1px 0px 2px #53d3dc;
-    text-align: left;
-
-
-  cursor: pointer;
-  background: transparent;
-}
-
-.fw-check-row:hover {
-  background-color: rgba(40, 8, 7, .6);
-}
-
-.fw-check-row::before {
-  content: '';
-
-  position: relative;
-  left: -3px;
-  bottom: -4px;
-
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 20px;
-
-  box-shadow: inset 0 0 0 1px #ff6d65;
-  background: #0e1116;
-}
-
-.fw-check-row--checked::before {
-  background: #ff6d65;
-  box-shadow: 0 0 4px 0px #ff6d65;
-}
-
 .fw-h1 {
   color: #ff6d65;
   text-transform: uppercase;
@@ -1667,7 +1602,7 @@ h2 {
     display: inline-block;
     padding: 15px;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
 
     background: #00816A;
     border-radius: 3px;
@@ -1902,7 +1837,7 @@ h2 {
 .intro__title {
     margin: 0;
 
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
     font-size: 45px;
     color: #fff;
     text-align: center;

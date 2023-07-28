@@ -10,9 +10,11 @@ import { initScore, updScore } from "./score.hud.js";
 
 const PAGE_NAMES = {
     enter: "enter",
+    cards: "cards",
     npc: CARD_TYPES.npc,
     class: CARD_TYPES.class,
     loot: CARD_TYPES.loot,
+    sound: CARD_TYPES.sound,
     hud: "hud",
     event: "event",
     board: "board"
@@ -51,7 +53,7 @@ win77.router = {
 
 const swipePage = (name) => {
     // console.log(`We use swiper to go on ${name}`, swiper);
-    if (name === PAGE_NAMES.npc || name === PAGE_NAMES.class || name === PAGE_NAMES.loot) {
+    if (name === PAGE_NAMES.npc || name === PAGE_NAMES.class || name === PAGE_NAMES.loot || name === PAGE_NAMES.sound) {
         swiper.slideTo(0, 0);
     } else {
         swiper.slideTo(1, 0);
@@ -68,7 +70,7 @@ const goToPage = (name) => {
     title.textContent = win77.router.currentPage.toUpperCase();
 
     if (name === PAGE_NAMES.hud) {
-        body.querySelector("#dne-page").innerHTML = hudMarkup;
+        body.querySelector("#dne-page").innerHTML = hudMarkup();
         initScore();
         updScore();
         updHand();

@@ -1,4 +1,5 @@
 @import "./vars.css";
+@import "./fonts.css";
 
 /*CORE*/
 @import "./blocks/pokeball.css";
@@ -9,6 +10,9 @@
 @import "./blocks/theday.css";
 
 /*CUSTOM UI COMPONENT*/
+@import "blocks/intro.css";
+@import "blocks/sudo-page.css";
+@import "./blocks/advice.css";
 @import "blocks/hud-core.css";
 @import "blocks/f-btn.css";
 @import "blocks/cybr-btn.css";
@@ -16,8 +20,38 @@
 @import "blocks/check.css";
 @import "blocks/hypnosoft.css";
 @import "blocks/rts-btn.css";
+@import "blocks/credits.css";
+@import "blocks/ascii-title.css";
+@import "blocks/card-builder.css";
+@import "blocks/form-field.css";
+@import "blocks/dialog-vertical.css";
+@import "blocks/quest.css";
+@import "blocks/game-menu.css";
+@import "blocks/cutscene.css";
+@import "blocks/save.css";
+@import "blocks/map.css";
+@import "blocks/hex-btn.css";
+@import "blocks/sky-nav.css";
+@import "blocks/chess.css";
+@import "blocks/wall.css";
+@import "blocks/hypno.css";
+@import "blocks/custom-scrollbar.css";
+@import "blocks/week.css";
+@import "blocks/your-day.css";
+@import "blocks/your-event.css";
+@import "blocks/setting.css";
+@import "blocks/collector.css";
+@import "blocks/collection.css";
+@import "blocks/hand-timer.css";
+@import "blocks/card-preview.css";
+@import "blocks/bank.css";
+@import "blocks/cyber-strike.css";
+@import "blocks/mathmaking.css";
+@import "blocks/squad.css";
+@import "blocks/tinder.css";
 
 /*CUSTOMIZATION*/
+@import "./i-customization.css";
 @import "./cards-customization.css";
 @import "./page-customization.css";
 @import "./modals-customization.css";

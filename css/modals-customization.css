@@ -7,6 +7,10 @@
     margin: 20px auto;
 }
 
+.white-popup.cp-body {
+    background-color: #002939;
+}
+
 .white-popup .mfp-close {
     position: absolute;
     top: auto;
@@ -28,7 +32,7 @@
 
     color: white;
 
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
 }
 
 .card-modal {
@@ -110,7 +114,7 @@ body .mfp-bg {
     padding-bottom: 4px;
 
     font-size: 1em;
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
 
 }
 
@@ -143,6 +147,10 @@ a.js-phone {
     padding: 0;
 }
 
+.setting-modal {
+    max-width: 45vw;
+}
+
 .win77-dialog {
     display: flex;
     flex-flow: column nowrap;
@@ -154,6 +162,8 @@ a.js-phone {
     -webkit-font-smoothing: none;
     width: 265px;
     box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px #C2C6CA, inset -1px -1px #85898d, inset 2px 2px white;
+
+    transform: scale(1.4);
 }
 
 .win77-dialog__textarea {
@@ -219,9 +229,10 @@ a.js-phone {
     margin: 1px 15px 14px 14px;
 }
 .win77-dialog .buttons button {
-    width: 74px;
+    width: 90px;
     height: 22px;
     display: grid;
+    color: black;
 }
 .win77-dialog .buttons button:not(:last-child) {
     margin-right: 7px;
@@ -252,3 +263,23 @@ a.js-phone {
 .win77-dialog .buttons button:active p, .win98popup .buttons button:active img {
     transform: translateX(1px) translateY(1px);
 }
+
+.quest-modal.white-popup {
+    max-width: 980px;
+    min-height: 540px;
+    padding: 20px;
+    background: #0e1116;
+}
+
+.load-modal.white-popup {
+    max-width: 1200px;
+    padding: 0;
+    background: transparent;
+}
+
+.map-modal.white-popup {
+    width: 100%;
+    max-width: 1300px;
+    padding: 0;
+}
+

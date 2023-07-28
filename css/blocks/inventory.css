@@ -80,6 +80,27 @@
     text-align: left;
 }
 
+.inventory.project-obj {
+    right: auto;
+    left: 0;
+    top: 260px;
+
+    text-align: left;
+}
+
+#project-details-list {
+    display: block;
+    padding-left: 40px;
+}
+
+.project-detail {
+    display: block;
+}
+
+.project-obj .inventory-item {
+    display: inline;
+}
+
 .inventory-item {
     transition: .1s ease-in;
 
@@ -88,8 +109,53 @@
     text-decoration: none;
 }
 
+.inventory-item.--shake {
+    animation: shake .7s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes shake {
+ 0% {
+     transform: rotate(0);
+ }
+
+    20% {
+        transform: rotate(-15deg);
+    }
+
+    40% {
+        transform: rotate(15deg);
+    }
+
+    60% {
+        transform: rotate(-15deg);
+    }
+
+    80% {
+        transform: rotate(15deg);
+    }
+
+    85% {
+        transform: rotate(-15deg);
+    }
+
+    80% {
+        transform: rotate(15deg);
+    }
+
+    95% {
+        transform: rotate(0);
+    }
+}
+
 .player-obj .inventory-item {
     display: inline-block;
+}
+
+#player-crew-list .inventory-item,
+#player-dia-list .inventory-item {
+    display: block;
+    padding-left: 40px;
 }
 
 .inventory-item:hover, .inventory-item:active, .inventory-item:visited {

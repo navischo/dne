@@ -3,7 +3,34 @@ import { getCardElement } from "./cards/template.cards.js";
 import { appendNewTop } from "./theday/endgame.theday.js";
 
 class DNECli {
-    constructor() {}
+    constructor() {
+        this.isPlayerOnMap = false;
+        this.inQuestTime = 0;
+    }
+
+    timer(h, m, s, maxSec, maxMin, maxHour) {
+        return () => {
+            if (s > maxSec) {
+                m++;
+                if (m > maxMin) {
+                    h++;
+                    if (h > maxHour) {
+                        h = 0;
+                        m = 0;
+                        s = 0;
+                    }
+                    m = 0;
+                }
+                s = 0;
+            }
+
+            const node = document.querySelector(".time");
+            node.innerHTML = `${h ? `${h}h` : ``} ${m ? `${m}m` : ``} ${s ? `${s}s` : ``}`;
+
+            s++;
+
+        };
+    }
 
     log(command) {
         return console.log(command);
@@ -22,7 +49,8 @@ class DNECli {
         this.game.table = new Set();
     }
 
-    setLineupLength(min) {
+    setLineup(min, lineup) {
+        this.game.event.lineup = lineup;
         this.game.event.lineupLength = min;
     }
 
@@ -53,7 +81,10 @@ class DNECli {
                     bankroll: this.game.player.balance.bankroll
                 }
             };
+            this.game.player.lvl = this.game.player.lvl + 1;
+
             localStorage.setItem("bankroll", `${this.game.player.balance.bankroll}`);
+            localStorage.setItem("lvl", `${this.game.player.lvl}`);
             appendNewTop(this.game.player.id, this.game.player.balance.bankroll);
             console.log("Seems like you win the game. Congratulations!", win77.game);
         }
@@ -78,6 +109,14 @@ class DNECli {
         cardParent.innerHTML = ``;
         this.pokeButton.dia.drawCard(cardParent, getCardElement, cardData);
         console.log(cardData.id, cardParent);
+    }
+
+    getEnergyPointsFromPlayer(count) {
+        this.game.player.balance.energy = this.game.player.balance.energy - count;
+    }
+
+    giveEnergyPointsToPlayer(count) {
+        this.game.player.balance.energy = this.game.player.balance.energy + count;
     }
 }
 

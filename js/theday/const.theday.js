@@ -2,6 +2,10 @@ import { getRandomInt } from "../utils/getCardById.js";
 import { win77 } from "../dne-cli.js";
 import { reloadTheday } from "./reload.theday.js";
 import { drawLootCards } from "../cards/dom.cards.js";
+import { DUNGE_NAMES } from "../inInteraction/interface.inInteraction.js";
+import { matchGenreBonus } from "../utils/matchGenreBonus.js";
+import { logIncome } from "../utils/logIncome.js";
+import { initLineup } from "../utils/initLineup.js";
 
 const SMITHS_TYPES = [
     {
@@ -27,6 +31,7 @@ const SMITHS_TYPES = [
 
 const SMITHS_LETTERS = ["A", "B", "C", "D", "E"];
 const settings = {
+    dungeName: DUNGE_NAMES[getRandomInt(DUNGE_NAMES.length)],
     enterPrice: 200,
     socialPoints: 5,
     guestsCount: 0,
@@ -110,6 +115,120 @@ const rareGuestsArr = [{
     enterBudget: 1000,
     maxPlusCount: 20,
     isOnBoard: false
+}, {
+    name: "garry",
+    img: "rare-guest-9",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "fred-and-jorge",
+    img: "rare-guest-10",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "hagrid",
+    img: "rare-guest-11",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "germiona",
+    img: "rare-guest-12",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "polumna",
+    img: "rare-guest-13",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "snape",
+    img: "rare-guest-14",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "garry-w",
+    img: "rare-guest-15",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "draco-w",
+    img: "rare-guest-16",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "dambldor-w",
+    img: "rare-guest-17",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "germiona-w",
+    img: "rare-guest-18",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "ron-w",
+    img: "rare-guest-19",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "belatrice-w",
+    img: "rare-guest-20",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "snape-w",
+    img: "rare-guest-21",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "hagrid-w",
+    img: "rare-guest-22",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "voldemort-w",
+    img: "rare-guest-23",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "moody-w",
+    img: "rare-guest-24",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "pantera",
+    img: "rare-guest-25",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "neuropunk",
+    img: "rare-guest-26",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
+}, {
+    name: "neuropunk-2",
+    img: "rare-guest-27",
+    enterBudget: 1000,
+    maxPlusCount: 20,
+    isOnBoard: false
 }];
 const rareGuestsSet = new Set();
 win77.game.player.rareGuestsSet = rareGuestsSet;
@@ -170,7 +289,7 @@ const getRareGuest = () => {
 
 const drawSmitsCard = (dataObj) => {
     const rareGuest = dataObj.name === "rare" ? getRareGuest() : false;
-    console.log("isRareGuest", rareGuest);
+    // console.log("isRareGuest", rareGuest);
     if (rareGuest) {
         dataObj.name = rareGuest.name;
         dataObj.profile = rareGuest;
@@ -209,12 +328,15 @@ const drawSmitsCard = (dataObj) => {
     const controls = guest.querySelectorAll("button");
     controls.forEach((btn) => {
         if (btn.textContent === "+") {
-            btn.addEventListener("click", () => {
+            btn.addEventListener("click", (e) => {
                 guest.classList.add("slide-out-left");
                 setTimeout(() => {
                     guest.remove();
                 }, 500);
                 passGuest(dataObj);
+
+                logIncome(dataObj.enterBudget * dataObj.plusCount, e);
+
                 const message = `You pass ${dataObj.name}`;
                 console.log(message, dataObj, win77.game);
             });
@@ -228,8 +350,8 @@ const drawSmitsCard = (dataObj) => {
                     guest.remove();
                 }, 450);
                 console.log(`You say not today to ${dataObj.name}`, dataObj, win77.game);
-                win77.game.event.settings.socialPoints++;
-                inviteGuest();
+                // win77.game.event.settings.socialPoints++;
+                // inviteGuest();
             });
         }
     });
@@ -248,18 +370,52 @@ const matchCashOnBar = () => {
     return (basePrice * (man / 2)) + (basePrice * (woman * 3));
 }
 
+const matchLootBonus = () => {
+    let LOOT_BONUS = 0;
+    win77.game.player.loot.forEach((lootItem) => {
+        // console.log(`LOOT_BONUS`, LOOT_BONUS, lootItem.bonus);
+        LOOT_BONUS = LOOT_BONUS + lootItem.bonus;
+    });
+    return LOOT_BONUS;
+}
+
+const matchCrewBonus = () => {
+    let CREW_BONUS = 0;
+    win77.game.player.npc.forEach((crewItem) => {
+        // console.log(`CREW_BONUS`, CREW_BONUS, crewItem.bonus);
+        CREW_BONUS = CREW_BONUS + crewItem.bonus;
+    });
+    return CREW_BONUS;
+}
+
 const matchEventIncome = (smithCard) => {
     const cashOnEnter = matchCashOnEnter(smithCard);
     win77.game.event.result.cashOnEnter = win77.game.event.result.cashOnEnter + cashOnEnter;
+
+
+    const GENRE_BONUS = matchGenreBonus(win77.game.table);
+    const LOOT_BONUS = matchLootBonus();
+    const CREW_BONUS = matchCrewBonus();
+
+
+    const IMPACT_BONUS = win77.game.player.score - win77.game.versusScore + GENRE_BONUS + LOOT_BONUS + CREW_BONUS;
+    if (IMPACT_BONUS > 4) {
+        // console.log("IMPACT_BONUS", IMPACT_BONUS, Math.round(+cashOnEnter / 100 * IMPACT_BONUS), win77.game.event.result.impactBonus);
+        const impactIncome = Math.round(cashOnEnter / 100 * IMPACT_BONUS);
+        // win77.game.event.result.impactBonus = win77.game.event.result.impactBonus + impactIncome;
+        win77.game.event.result.impactBonus = win77.game.event.result.impactBonus + impactIncome;
+        console.log(`+${impactIncome} Impact bonus(${win77.game.event.result.impactBonus} in total)`);
+    }
 
 
     win77.game.event.result.cashOnBar = matchCashOnBar();
 
     win77.game.event.result.income =
         +win77.game.event.result.cashOnEnter
-        + win77.game.event.result.cashOnBar;
+        + win77.game.event.result.cashOnBar
+        + win77.game.event.result.impactBonus;
 
-    console.log(`${smithCard.name}(${smithCard.enterBudget}) bring you ${cashOnEnter} income`);
+    console.log(`${smithCard.name}(${smithCard.enterBudget}) bring you ${cashOnEnter} income.`);
 }
 
 const passGuest = (smithCard) => {
@@ -326,11 +482,11 @@ const getScene = () => {
 
 const useSmithsCards = () => {
     const scene = getScene();
-    console.log(`${win77.game.player.id} getSceneData()`, scene);
+    // console.log(`${win77.game.player.id} getSceneData()`, scene);
     drawLootCards(scene.data.executive, scene.executiveSelector);
     const teamCards = document.querySelectorAll(`${scene.executiveSelector} .card`);
     teamCards.forEach((teamCard) => {
-        console.log(`teamCard`, teamCard, teamCard.parentNode);
+        // console.log(`teamCard`, teamCard, teamCard.parentNode);
         teamCard.parentNode.classList.add("swiper-slide");
     });
     win77.swiperExecutive = new Swiper(".swiper.executive", {
@@ -339,6 +495,7 @@ const useSmithsCards = () => {
     });
     drawLootCards(scene.data.controller, scene.setup.controllerSelector);
     drawLootCards(scene.data.lineup, scene.setup.lineupSelector);
+    initLineup();
     document.querySelector(`${scene.setup.lineupSelector}`).classList.add("--play");
     const inviteGuestByInterval = () => {
         const socialPoints = win77.game.event.settings.socialPoints;
@@ -349,7 +506,7 @@ const useSmithsCards = () => {
             clearInterval(interval);
         }
     };
-    const interval = setInterval(inviteGuestByInterval, 3000);
+    const interval = setInterval(inviteGuestByInterval, 5000);
 }
 
 // const clearSmithsSet = () => {
@@ -360,4 +517,4 @@ const useSmithsCards = () => {
 win77.pokeButton.dia.useSmithsCards = useSmithsCards;
 // win77.pokeButton.dia.clearSmithsSet = clearSmithsSet;
 
-export { settings, matchEventIncome };
+export { settings, matchEventIncome, matchLootBonus, matchCrewBonus };

@@ -1,14 +1,15 @@
 class DNECard {
-    constructor(id, name, description, img) {
+    constructor(id, name, description, img, collection = "all") {
         this.id = id;
         this.name = name;
         this.description = description;
         this.img = img;
+        this.collection = collection;
     }
 }
 
 class DNELootCard extends DNECard {
-    constructor(id, name, description, img, bonus, cost, limits, longline, qr, isBuild, type = "loot") {
+    constructor(id, name, description, img, bonus, cost, limits, longline, qr, isBuild, type = "loot", credits = null) {
         super(id, name, description, img);
         this.bonus = bonus;
         this.cost = cost;
@@ -17,6 +18,7 @@ class DNELootCard extends DNECard {
         this.qr = qr;
         this.isBuild = isBuild;
         this.type = type;
+        this.credits = credits;
     }
 }
 

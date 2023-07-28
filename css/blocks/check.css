@@ -1,10 +1,3 @@
-@font-face {
-    font-family: 'JUSTICE3D';
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/225473/justice.ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .check-screen p {
     margin: 0;
 }
@@ -32,6 +25,11 @@
     font-family: 'JUSTICE3D', sans-serif;
     font-size: 5em;
     line-height: .8;
+}
+
+.check-clone.--glitch {
+    animation: glitch 3.35s step-end alternate, glitch-skew 0.35s step-end alternate;
+    animation-iteration-count: 2;
 }
 
 .check-clone-0 {

@@ -1,0 +1,15 @@
+.cutscene {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#cutscene-parent.--up .cutscene {
+    z-index: 40;
+}
+
+.cutscene video {
+    width: 100%;
+}

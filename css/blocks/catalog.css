@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 11;
 
     /*padding: 10px 10px 40px;*/
 
@@ -13,7 +13,7 @@
     visibility: hidden;
 }
 
-.catalog-controls__filter:nth-child(n + 4)::before {
+.catalog-controls__filter[disabled="true"]::before {
     content: "🔒";
 }
 
@@ -36,7 +36,7 @@
 
 .catalog-controls__item b,
 .catalog-controls__subtitle {
-    font-family: "Press Start 2p", cursive;
+    font-family: "Press Start 2p", sans-serif;
     font-size: 20px;
 }
 

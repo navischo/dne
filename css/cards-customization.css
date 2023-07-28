@@ -108,6 +108,28 @@
     color: white;
 }
 
+#dne-card-gendalf .card__preview-img {
+    position: relative;
+    z-index: 0;
+
+    transform: scale(2.6) translate(10px, 29px);
+}
+
+#dne-card-gendalf .card__header {
+    position: relative;
+    z-index: 1;
+
+    color: white;
+}
+
+#dne-card-gendalf .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 1;
+
+    color: white;
+}
+
 #dne-card-i61 .card__preview-img {
     transform: scale(1.2) translateY(29px);
 }
@@ -431,6 +453,13 @@
 }
 
 #dne-card-i-sinabon .card__price {
+    color: white;
+}
+
+#dne-card-i-sinabon .card__description {
+    position: absolute;
+    z-index: 3;
+    top: 300px;
     color: white;
 }
 
@@ -1008,6 +1037,21 @@ img {
 
 }
 
+#dne-card-class-munchkin .card__preview-img {
+    transform: scale(1.25) translateY(-13px);
+}
+
+#dne-card-class-munchkin .card__header {
+    position: relative;
+    z-index: 2;
+}
+
+#dne-card-class-munchkin .card__description {
+    position: absolute;
+    z-index: 2;
+    bottom: 5px;
+}
+
 #dne-card-sleep .card__preview-img {
     transform: scale(1.35) translateY(35px);
 }
@@ -1074,6 +1118,99 @@ img {
 
 #dne-card-iup .card__preview-img {
     transform: scale(.9);
+}
+
+#dne-card-hired .card__title {
+    text-shadow: 2px 3px 0 black;
+}
+
+#dne-card-hired .card__header {
+    position: absolute;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-hired .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-hired .card__preview {
+    transform: scale(1.6) translateY(48px);
+}
+
+#dne-card-makima .card__header {
+    position: absolute;
+    z-index: 2;
+    color: black;
+}
+
+#dne-card-makima .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    color: white;
+    text-shadow: 1px 2px 5px black;
+}
+
+#dne-card-makima .card__preview {
+    transform: scale(1.1) translateY(47px);
+}
+
+#dne-card-dixi .card__header {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    text-shadow: 1px 2px 5px black;
+}
+
+#dne-card-dixi .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    color: white;
+    text-shadow: 1px 2px 5px black;
+}
+
+#dne-card-dixi .card__preview {
+    transform: scale(1.58) translateY(50px);
+}
+
+
+#dne-card-snoop-dog .card__header {
+    position: absolute;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-snoop-dog .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-snoop-dog .card__preview {
+    transform: scale(1.4) translateY(43px);
+}
+
+#dne-card-rebeca .card__header {
+    position: absolute;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-rebeca .card__description {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    color: white;
+}
+
+#dne-card-rebeca .card__preview {
+    transform: scale(1.15) translateY(18px);
 }
 
 #dne-card-doll .card__header {

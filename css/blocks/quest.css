@@ -1,0 +1,136 @@
+.quest {
+    display: flex;
+    padding: 18px 30px;
+}
+
+.quest.--max-map .quest__map-preview {
+    width: 480px;
+}
+
+.quest__left {
+    position: relative;
+    max-width: 480px;
+}
+
+.quest__right {
+    padding-left: 30px;
+}
+
+.quest__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.quest__img {
+    width: 50px;
+    height: 96px;
+}
+
+.quest__title {
+    margin: 5px 0;
+    font-size: 24px;
+    font-family: "JetBrains Mono", sans-serif;
+}
+
+.quest__map-preview {
+    /*position: absolute;*/
+    /*left: 500px;*/
+    /*top: 40px;*/
+    /*right: 40px;*/
+    width: 100%;
+    max-width: 480px;
+    min-height: 480px;
+
+    transition: .2s ease;
+}
+
+.quest__map-preview img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    border: 2px solid var(--colors-primary--500);
+    box-shadow: var(--ui-glow);
+}
+
+.quest__achievements {
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+.quest__achievements-item + .quest__achievements-item {
+    margin-left: 6px;
+}
+
+.quest__achievements-item {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--colors-primary--500);
+}
+
+.quest__achievements-item.--achieved {
+    background: var(--colors-primary--500);
+    box-shadow: var(--ui-glow);
+}
+
+/*.quest__achievements-item.--achieved {*/
+/*    background: #5bece6;*/
+/*    box-shadow: 0 0 5px #5bece6;*/
+/*}*/
+
+
+
+.quest__left .button-toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.quest__settings-controls {
+    display: flex;
+}
+
+.quest__settings-controls .form-field__input {
+    max-width: 190px;
+    padding: 14px 10px;
+}
+
+.quest__settings-controls .form-field:last-child .form-field__input {
+    max-width: 100px;
+}
+
+.quest__time {
+    color: var(--colors-primary--500);
+    text-shadow: var(--ui-glow);
+
+    position: absolute;
+    top: 7px;
+    right: 80px;
+    left: auto;
+    transform: none;
+
+    height: 22px;
+
+    font-size: 24px;
+    white-space: nowrap;
+    font-family: "Press Start 2p", "JetBrains Mono", monospace;
+}
+
+.achievement-p {
+    cursor: pointer;
+}
+
+.achievement-p.--done {
+    background: #ff6d65;
+    color: black;
+    box-shadow: 0 0 0 4px #ff6d65;
+}

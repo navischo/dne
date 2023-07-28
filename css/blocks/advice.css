@@ -1,0 +1,61 @@
+.advice {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1111;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    /*background: url("../../libs/screen/screen-hud--advice.jpg")!important;*/
+    background: radial-gradient(closest-side, transparent, #000000e0)!important;
+    background-size: contain!important;
+    background-repeat: no-repeat;
+    background-position: center!important;
+}
+
+.advice::before,
+.advice::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: flex;
+    height: 12vh;
+
+    background: black;
+}
+
+.advice::after {
+    top: auto;
+    bottom: 0;
+}
+
+.advice__content {
+
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 10px 50px;
+
+    color: white;
+    font-family: "JetBrains Mono", monospace;
+    text-shadow: 2px 1px 0 black;
+}
+
+.advice__title {
+    font-family: "Press Start 2p", "Cyberpunk", sans-serif;
+}
+
+.advice__descr {
+    min-height: 250px;
+    max-width: 505px;
+
+    line-height: 1.4;
+}

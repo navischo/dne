@@ -100,6 +100,19 @@
     background-position: center;
 }
 
+.card__preview {
+    display: block;
+    width: 100%;
+}
+
+.card__preview[href]:hover {
+    cursor: zoom-in;
+}
+
+[data-advice-id]:hover {
+    cursor: help;
+}
+
 .card__controls {
     position: absolute;
     bottom: 0;
@@ -198,7 +211,7 @@
 .card__title {
     margin: 0;
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     word-break: break-word;
 }
 
@@ -216,7 +229,7 @@
 }
 
 .card__price {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 .card__limits {
@@ -263,7 +276,7 @@
 .card__bonus,
 .card__budget,
 .card__profit {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     font-size: 1.2em;
 }
 
@@ -272,10 +285,38 @@
     flex-wrap: wrap;
 }
 
+.card-catalog-wrap.--styled {
+    padding-top: 80px;
+}
+
+.card-catalog-wrap.--styled .js-cards-catalog {
+
+}
+
+.card-catalog-wrap.--styled .js-cards-catalog > * {
+    margin: 5px;
+}
+
 .catalog-controls__show-btn {
     z-index: 3;
 }
 
 .catalog-controls__hide-btn {
     z-index: 4;
+}
+
+.js-inventory-menu .card > *:not(.card__preview) {
+    display: none;
+}
+
+.build .js-inventory-menu .card {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.build .js-inventory-menu .card > .card__title {
+    display: block;
 }

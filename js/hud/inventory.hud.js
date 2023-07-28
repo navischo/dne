@@ -3,23 +3,45 @@ import { win77 } from "../dne-cli.js";
 import { initInventoryPopupJquery } from "../utils/initInventoryPopup.jquery.js";
 
 
+
 const inventoryMarkup = `
+<div id="project-obj" class="fw-d-none project-obj inventory">
+    project:&nbsp;&nbsp;{<br>
+    &nbsp;&nbsp;<span>name:</span>&nbsp;
+    <span class="js-prj-name">Electro Exhibition</span>,
+    <br>&nbsp;&nbsp;<span>executive:</span>&nbsp;
+    <span class="js-prj-executive">Navi</span><span>,
+    <br>&nbsp;&nbsp;<span>point:</span>&nbsp;
+    <span class="js-prj-point">Keller</span>,<span class="fw-d-none js-prj-details">
+    <br>&nbsp;&nbsp;<span>details:</span>&nbsp;{
+    &nbsp;&nbsp;&nbsp;&nbsp;<span id="project-details-list" class="inventory-items">
+        
+    </span>
+    &nbsp;&nbsp;},
+    </span>
+    <br>&nbsp;&nbsp;<button class="js-open-details cp-button">Details()</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;<br>}</span>
+</div>
 <div class="player-obj inventory">
     player:<br>&nbsp;&nbsp;{<br>
-    &nbsp;&nbsp;class:<br>&nbsp;&nbsp;{&nbsp;
+    &nbsp;&nbsp;<span data-advice-id="class">class:</span><br>&nbsp;&nbsp;{&nbsp;
     <span id="player-class-list" class="inventory-items"></span>
     &nbsp;},
-    <br>&nbsp;&nbsp;crew:<br>&nbsp;&nbsp;{&nbsp;
+    <br>&nbsp;&nbsp;<span data-advice-id="crew">crew:</span>&nbsp;{&nbsp;<br>
     <span id="player-crew-list" class="inventory-items"></span>
-    &nbsp;}
+    &nbsp;&nbsp;}<span class="js-dia-wrap fw-d-none">,
+    <br>&nbsp;&nbsp;<span data-advice-id="dia">dia:</span>&nbsp;{&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;<span id="player-dia-list" class="inventory-items"></span>
+    &nbsp;&nbsp;}</span>
     <br>}<br><br><div class="js-in-car"></div>
     <a href="#nokia-popup" class="js-phone inventory-item">call me()</a>
 </div>
 <div class="inventory">
-    inventory: <br>{<br>
+    <span data-advice-id="inventory">inventory:</span> <br>{<br>
     <span id="inventory-list" class="inventory-items"></span>
     }<br><br>
-    <span id="one-more"><button>+</button></span>sound: <br>{<br>
+    <span id="one-more"><button>+</button></span><span data-advice-id="sound">sound:</span> <br>{<br>
     <span id="sound-list" class="inventory-items"></span>
     }
 </div>
@@ -40,15 +62,18 @@ const inventoryList = document.querySelector("#inventory-list");
 const soundList = document.querySelector("#sound-list");
 const playerClassList = document.querySelector("#player-class-list");
 const playerCrewList = document.querySelector("#player-crew-list");
+const playerDiaList = document.querySelector("#player-dia-list");
 
+const projectExecutiveList = document.querySelector(".js-prj-executive");
 
 const cardNodesByType = {
     [CARD_TYPES.loot]: inventoryList,
     [CARD_TYPES.sound]: soundList,
     [CARD_TYPES.class]: playerClassList,
-    [CARD_TYPES.npc]: playerCrewList
+    [CARD_TYPES.npc]: playerCrewList,
+    [CARD_TYPES.dia]: playerDiaList,
+    executive: projectExecutiveList
 }
-
 
 const appendCardToInventory = (cardData, cardType = CARD_TYPES.loot) => {
     const newListItem = document.createElement("a");
@@ -61,6 +86,8 @@ const appendCardToInventory = (cardData, cardType = CARD_TYPES.loot) => {
     });
 
     cardNodesByType[cardType].appendChild(newListItem);
+
+    return newListItem;
 }
 
 const inventory = {
@@ -70,6 +97,7 @@ const inventory = {
         cardNodesByType.class.innerHTML = ``;
         cardNodesByType.npc.innerHTML = ``;
         cardNodesByType.sound.innerHTML = ``;
+        cardNodesByType.dia.innerHTML = ``;
     }
 }
 
@@ -107,11 +135,19 @@ const initInventory = () => {
         appendCardToInventory(soundCard, CARD_TYPES.sound);
     });
 
+    player.dia?.forEach((diaCard) => {
+        appendCardToInventory(diaCard, CARD_TYPES.dia);
+    });
+
     player.cars.forEach((carCard) => {
         initCarInventory(carCard);
     });
 
+    if (win77.game.player.lvl >= 3) {
+        document.querySelector(".js-dia-wrap").classList.remove("fw-d-none");
+    }
+
     initInventoryPopupJquery();
 }
 
-export { initInventory, inventoryMarkup };
+export { initInventory, inventoryMarkup, appendCardToInventory };

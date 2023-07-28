@@ -6,97 +6,362 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CONSUME</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/blocks/buy-page.css">
+    <link rel="stylesheet" href="css/blocks/sale.css">
+
 </head>
 <body class="buy-body">
-<div class="buy">
-    <h1 class="cybr-title buy__title">Does Not Exist</h1>
-    <p class="buy__subtitle">Competitive Board-n-Web Game...<br> about creating Rave of your Dream</p>
-    <div class="buy__type-btns">
-        <button class="cybr-btn buy__digital" style="margin-right: 10px">Digital</button>
-        <button class="cybr-btn buy__physical">Physical</button>
-    </div>
-    <ul class="buy__bundle-list">
-        <li class="buy__bundle">
-            <h3 class="buy__bundle-title">Bunny</h3>
-            <b class="buy__bundle-price">07€</b>
-            <img class="buy__bundle-preview" src="img/buy/bunny.png" alt="">
-            <div class="buy__bundle-textfield">
-                <ul>
-                    <li>2 Найомничка</li>
-                    <li>5 Саундів</li>
-                    <li>1 DMT-дихання</li>
+<div class="swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide menu">
+            <article class="js-cart cart custom-scrollbar --y">
+                <header class="cart__header">
+                    Your cart: <div class="js-price-order cart__total-price"></div>
+                </header>
+                <input class="js-text-order" type="text">
+                <div class="js-pack-order cart__in">
+
+                </div>
+                <p class="cart__advice">
+                    Нажаль в мене немає можливості підімкнути онлайн оплату<br>
+                    тому я прошу тебе зробити два прості кроки:
+                </p>
+                <div class="cart__controls">
+                    <button class="js-copy-order cart__controls-item cart__copy">Тиць! Скопіювати своє замовлення</button>
+
+                    <a href="https://t.me/beast_hotline" class="cart__controls-item cart__direct" target="_blank">Тиць! Надіслати його мені в телеграм</a>
+                </div>
+                <p class="cart__advice">
+                    Дякую!
+                </p>
+            </article>
+        </div>
+        <div class="swiper-slide content">
+            <div class="menu-button cp-button">
+                <img src="img/buy/gold.png" alt="">
+            </div>
+            <div class="buy-content custom-scrollbar --y">
+            <header class="sale">
+                <div class="sale__banner">
+                    <img class="sale__banner-img" src="img/buy/summer-sale.png" alt="">
+                    <div class="sale__banner-screen">
+                        <h2 class="sale__banner-title">Літній розпродаж</h2>
+                        <p class="sale__banner-date">З 1 до 11 серпня, 20:00 за Києвом</p>
+                    </div>
+                </div>
+            </header>
+            <div class="buy">
+                <h1 class="cybr-title buy__title">Does Not Exist</h1>
+                <p class="buy__subtitle">Competitive Board-n-Web Game...<br> about creating Rave of your Dream</p>
+                <div class="buy__type-btns">
+                    <button id="buy-digital" class="cybr-btn --reverse buy__digital" style="margin-right: 10px">Digital</button>
+                    <button id="buy-physical" class="cybr-btn buy__physical">Physical</button>
+                </div>
+                <ul class="buy__bundle-list">
+                    <li class="buy__bundle">
+                        <h3 class="buy__bundle-title">Bunny</h3>
+                        <b id="price-bunny" class="buy__bundle-price">07€</b>
+                        <img class="buy__bundle-preview" src="img/buy/bunny.png" alt="">
+                        <div class="buy__bundle-textfield">
+                            <ul>
+                                <li>2 Найомничка</li>
+                                <li>5 Саундів</li>
+                                <li>1 DMT-дихання</li>
+                                <li>1 Клас</li>
+                            </ul>
+                            <p>Вистачить щоб відчути гру на смак</p>
+                        </div>
+                        <button class="js-add-pack cp-button btn-buy" data-pack-type="bunny" data-pack-price="7" type="button">&plus;</button>
+                        <button class="js-sub-pack cp-button btn-buy" data-pack-type="bunny" data-pack-price="7" type="button">&minus;</button>
+                        <!--            <button class="cybr-btn buy__action">+</button>-->
+                        <!--            <button class="cybr-btn buy__action">-</button>-->
+                    </li>
+                    <li class="buy__bundle">
+                        <h3 class="buy__bundle-title">Basic</h3>
+                        <b id="price-basic" class="buy__bundle-price">17€</b>
+                        <img class="buy__bundle-preview" src="img/buy/basic.png" alt="">
+                        <div class="buy__bundle-textfield">
+                            <ul>
+                                <li>9 Найомничків</li>
+                                <li>15 Саундів</li>
+                                <li>1 DMT-дихання</li>
+                                <li>2 Класи</li>
+                            </ul>
+                            <p>Грубо кажучи "Bunny" помножений на три</p>
+                        </div>
+                        <button class="js-add-pack cp-button btn-buy" data-pack-type="basic" data-pack-price="17" type="button">&plus;</button>
+                        <button class="js-sub-pack cp-button btn-buy" data-pack-type="basic" data-pack-price="17" type="button">&minus;</button>
+                        <!--            <button class="cybr-btn buy__action">+</button>-->
+                        <!--            <button class="cybr-btn buy__action">-</button>-->
+                    </li>
+                    <li class="buy__bundle">
+                        <h3 class="buy__bundle-title">Regular</h3>
+                        <b id="price-regular" class="buy__bundle-price --regular">117€</b>
+                        <img class="buy__bundle-preview" src="img/buy/regular.png" alt="">
+                        <div class="buy__bundle-textfield">
+                            <ul>
+                                <li>63 Найомничка</li>
+                                <li>105 Саундів</li>
+                                <li>7 DMT-дихання</li>
+                                <li>14 Класів</li>
+                            </ul>
+                            <p>Грубо кажучи "Basic" помножений на сім</p>
+                        </div>
+                        <button class="js-add-pack cp-button btn-buy" data-pack-type="regular" data-pack-price="117" type="button">&plus;</button>
+                        <button class="js-sub-pack cp-button btn-buy" data-pack-type="regular" data-pack-price="117" type="button">&minus;</button>
+                        <!--            <button class="cybr-btn buy__action">+</button>-->
+                        <!--            <button class="cybr-btn buy__action">-</button>-->
+                    </li>
                 </ul>
             </div>
-            <button class="cybr-btn buy__action">UA</button>
-            <button class="cybr-btn buy__action">EU</button>
-            <button class="cybr-btn buy__action">US</button>
-        </li>
-        <li class="buy__bundle">
-            <h3 class="buy__bundle-title">Basic</h3>
-            <b class="buy__bundle-price">17€</b>
-            <img class="buy__bundle-preview" src="img/buy/basic.png" alt="">
-            <div class="buy__bundle-textfield">
-                <ul>
-                    <li>7 Найомничків</li>
-                    <li>15 Саундів</li>
-                    <li>1 DMT-дихання</li>
-                    <li>1 Клас</li>
-                </ul>
-                <p>Грубо кажучи "Bunny" помножений на три</p>
+            <div class="js-order order">
+                <div class="status-info container">
+                    <div class="bar-info">
+                        <p class="line --order">Ordered cards: <span class="js-cards-order number"></span></p>
+                        <p class="line --total">Complete deck: <span class="js-cards-total number"></span></p>
+
+                        <div class="bar-wrap">
+                            <div class="js-bar"></div>
+                        </div>
+
+                        <p class="line --price"><span class="js-price-order"></span></p>
+                    </div>
+                    <span class="js-percentage"></span>
+
+
+
+                </div>
+                <div class="confirm-wrap">
+                    <button class="js-confirm-order rts-btn">CONSUME</button>
+                </div>
             </div>
-            <button class="cybr-btn buy__action">UA</button>
-            <button class="cybr-btn buy__action">EU</button>
-            <button class="cybr-btn buy__action">US</button>
-        </li>
-        <li class="buy__bundle">
-            <h3 class="buy__bundle-title">Regular</h3>
-            <b class="buy__bundle-price --regular">119€</b>
-            <img class="buy__bundle-preview" src="img/buy/regular.png" alt="">
-            <div class="buy__bundle-textfield">
-                <ul>
-                    <li>49 Найомничків</li>
-                    <li>105 Саундів</li>
-                    <li>7 DMT-дихання</li>
-                    <li>7 Класів</li>
-                </ul>
-                <p>Грубо кажучи "Basic" помножений на сім</p>
+
+            <div class="story">
+                <h2 class="story__title">Introduction</h2>
+                <div class="story__textfield">
+                    <div class="story__textfield-container">
+                        <p>
+                            Hello and welcome to the original adventure!
+                        </p>
+                        <p>
+                            Somewhere nearby is a mysterious factory that has no name, where on holidays you can see crowds of
+                            people in dark raincoats and strangely shaped glasses. Rumor has it that some of the people who enter
+                            are never seen again. They say that magic works in the factory. This program will become your eyes and
+                            hands.
+                        </p>
+                        <p>
+                            Hello, my name is Navischo and this program was originally developed by me in winter Kyiv of 2023. Green House Art Residency provided all
+                            the necessary resources for the development of this game during a full-scale Russian invasion to the
+                            territory of the sovereign state of Ukraine. The game is based on my favorite board games:
+                            Munchkin, Scythe, Fights of Battle Mages - and computer games: Cyberpunk 2077, Colossal Cave Adventure.
+                            This version was implemented using JS+HTML+CSS and is available to run in any modern browser.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <button class="cybr-btn buy__action">UA</button>
-            <button class="cybr-btn buy__action">EU</button>
-            <button class="cybr-btn buy__action">US</button>
-        </li>
-    </ul>
-</div>
-<div class="story">
-    <h2 class="story__title">Introduction</h2>
-    <div class="story__textfield">
-        <div class="story__textfield-container">
-            <p>
-                Hello and welcome to the original adventure!
-            </p>
-            <p>
-                Somewhere nearby is a mysterious factory that has no name, where on holidays you can see crowds of
-                people in dark raincoats and strangely shaped glasses. Rumor has it that some of the people who enter
-                are never seen again. They say that magic works in the factory. This program will become your eyes and
-                hands.
-            </p>
-            <p>
-                Hello, my name is Navischo and this program was originally developed by me in winter Kyiv of 2023. Green House Art Residency provided all
-                the necessary resources for the development of this game during a full-scale Russian invasion of the
-                territory of the sovereign state of Ukraine. The game is based both on my favorite board games:
-                Munchkin, Scythe, Fights of Battle Mages - and computer games: Cyberpunk 2077, Colossal Cave Adventure.
-                This version was implemented using JS+HTML+CSS and is available to run in any modern browser.
-            </p>
+            <div  class="story-demo">
+                <a href="https://navischo.github.io/" id="rts-btn" class="rts-btn" target="_blank">PLAY DEMO</a>
+            </div>
+            <footer>
+                <p style="padding: 10px; text-align: center">(c)2023, all rights received. Continue is an Art</p>
+            </footer>
+            </div>
         </div>
     </div>
 </div>
-<div  class="story-demo">
-    <a href="https://navischo.github.io/" id="rts-btn" target="_blank">START DEMO</a>
-</div>
-<footer>
-    <p style="padding: 10px; text-align: center">(c)2023, all rights received. Continue is an Art</p>
-</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+    var menuButton = document.querySelector('.menu-button');
+    var openMenu = function () {
+        swiper.slidePrev();
+    };
+    var swiper = new Swiper('.swiper', {
+        slidesPerView: 'auto',
+        initialSlide: 1,
+        resistanceRatio: 0,
+        slideToClickedSlide: true,
+        on: {
+            slideChangeTransitionStart: function () {
+                var slider = this;
+                if (slider.activeIndex === 0) {
+                    menuButton.classList.add('cross');
+                    // required because of slideToClickedSlide
+                    menuButton.removeEventListener('click', openMenu, true);
+                } else {
+                    menuButton.classList.remove('cross');
+                }
+            },
+            slideChangeTransitionEnd: function () {
+                var slider = this;
+                if (slider.activeIndex === 1) {
+                    menuButton.addEventListener('click', openMenu, true);
+                }
+            },
+        },
+    });
+
+    const getOrderMessage = () => {
+        const orderInput = document.querySelector(".js-text-order");
+        const orderNodes = document.querySelectorAll(".cart-item");
+        const packCounter = {
+            bunny: 0,
+            basic: 0,
+            regular: 0
+        };
+        orderNodes.forEach((orderNode) => {
+            const packName = orderNode.querySelector(".cart-item__name").textContent;
+            packCounter[packName]++;
+        });
+        let orderString = `Привіт, Навіщо! Хочу замовити пак карт, а саме ${packCounter.bunny > 0 ? `Bunny(${packCounter.bunny}шт)` : ""}${packCounter.bunny > 0 || packCounter.basic > 0 || packCounter.regular > 0 ? `, ` : ""}${packCounter.basic > 0 ? `Basic(${packCounter.basic}шт)` : ""}${packCounter.bunny > 0 && packCounter.basic > 0 && packCounter.regular > 0 ? ` та ` : ""}${packCounter.regular > 0 ? `Regular(${packCounter.regular}шт)` : ""}. Дякую!`;
+        orderInput.value = orderString;
+        orderInput.select();
+        document.execCommand("copy");
+        // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard
+    }
+    const appendPackInCart = (name, price) => {
+        const parent = document.querySelector(".js-pack-order");
+        const newElement = document.createElement("div");
+        newElement.classList.add("cart-item");
+        newElement.classList.add(`--${name}`);
+        newElement.innerHTML = `
+                <b class="cart-item__name">${name}</b>
+                <b class="cart-item__price">${price}€</b>`;
+        parent.appendChild(newElement);
+    }
+
+    const removePackFromCart = (name) => {
+        const parent = document.querySelector(".js-pack-order");
+        const packToRemove = parent.querySelector(`.--${name}`);
+        console.log(packToRemove);
+        if (packToRemove) {
+            packToRemove.remove();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const initPackBuyer = () => {
+        const bar = document.querySelector(".js-bar");
+        const percentageTag = document.querySelector(".js-percentage");
+        const totalTag = document.querySelector(".js-cards-total");
+        const solvedTag = document.querySelector(".js-cards-order");
+        const totalPriceTags = document.querySelectorAll(".js-price-order");
+
+        const addBtns = document.querySelectorAll(".js-add-pack");
+        const subBtns = document.querySelectorAll(".js-sub-pack");
+        const consumeBtn = document.querySelector(".js-confirm-order");
+        const copyOrderBtn = document.querySelector(".js-copy-order");
+        const cartNode = document.querySelector(".menu-button");
+        const orderNode = document.querySelector(".js-order");
+
+        const total = 189;
+        let solved = 0;
+        let totalPrice = 0;
+        const cardsNumInPack = {
+            bunny: 9,
+            basic: 27,
+            regular: 189
+        }
+
+        const ruleOfThree = (num1, num2) => {
+            const proportion = (num2 * 100) / num1;
+            return Math.round(proportion * 10) / 10;
+        };
+
+        const updateBarLength = () => {
+            const percentage = ruleOfThree(total, solved);
+            bar.style.width = percentage + "%";
+        };
+
+        const updateText = () => {
+            solvedTag.textContent = solved;
+            percentageTag.textContent = ruleOfThree(total, solved) + "%";
+        };
+
+        const updatePrice = () => {
+            totalPriceTags.forEach((totalPriceTag) => {
+                totalPriceTag.textContent = `${totalPrice}€`;
+            });
+        };
+
+        addBtns.forEach((addBtn) => {
+            addBtn.addEventListener("click", () => {
+                cartNode.classList.add("--visible");
+                orderNode.classList.add("--visible");
+
+                // if (solved < total) {
+                solved = solved + cardsNumInPack[addBtn.dataset.packType];
+                totalPrice = +totalPrice + +addBtn.dataset.packPrice;
+                appendPackInCart(addBtn.dataset.packType, addBtn.dataset.packPrice);
+                updateBarLength();
+                updateText();
+                updatePrice();
+                // }
+            });
+        });
+
+        subBtns.forEach((subBtn) => {
+            subBtn.addEventListener("click", (e) => {
+                const packToRemove = removePackFromCart(e.target.dataset.packType);
+                console.log(e.target.dataset.packType, packToRemove);
+                if (solved > 0 && packToRemove) {
+                    solved = solved - cardsNumInPack[subBtn.dataset.packType];
+                    totalPrice = +totalPrice - +subBtn.dataset.packPrice;
+                    updateBarLength();
+                    updateText();
+                    updatePrice();
+                }
+            });
+        });
+
+        consumeBtn.addEventListener("click", () => {
+
+            openMenu();
+        });
+
+        copyOrderBtn.addEventListener("click", () => {
+            getOrderMessage();
+        });
+
+        totalTag.textContent = total;
+        solvedTag.textContent = solved;
+        percentageTag.textContent = ruleOfThree(total, solved) + "%";
+        totalPrice.textContent = `${totalPrice}€`;
+    }
+
+    initPackBuyer();
+</script>
+<script>
+    const buyDigitalBtn = document.querySelector("#buy-digital");
+    const buyPhysicalBtn = document.querySelector("#buy-physical");
+    const bunnyPriceNode = document.querySelector("#price-bunny");
+    const basicPriceNode = document.querySelector("#price-basic");
+    const regularPriceNode = document.querySelector("#price-regular");
+    const priceNodeArr = [bunnyPriceNode, basicPriceNode, regularPriceNode];
+    const digitalPriceArr = [0, 0, 0];
+    const physicalPriceArr = [7, 17, 117];
+    const CURRENCY = "€";
+
+    buyDigitalBtn.addEventListener("click", () => {
+        digitalPriceArr.forEach((price, i) => {
+            priceNodeArr[i].textContent = `${price}${CURRENCY}`;
+        });
+    });
+
+    buyPhysicalBtn.addEventListener("click", () => {
+        physicalPriceArr.forEach((price, i) => {
+            priceNodeArr[i].textContent = `${price}${CURRENCY}`;
+        });
+    });
+
+</script>
+
 </body>
 </html>
