@@ -10,6 +10,15 @@
     padding-top: 10px;
 }
 
+#cards-reward {
+    opacity: 0;
+    transition: .5s ease-in-out;
+}
+
+#cards-reward.--visible {
+    opacity: 1;
+}
+
 .card {
     position: relative;
     overflow: hidden;
@@ -25,6 +34,54 @@
     text-align: left;
 
     background: white;
+}
+
+.card.--hide::before {
+    content: "";
+
+    position: absolute!important;
+    top: 0!important;
+    right: 0!important;
+    bottom: 0!important;
+    left: 0!important;
+    z-index: 10!important;
+
+    width: 100%!important;
+    height: 100%!important;
+
+    background-image: url("../../img/bg-card.png")!important;
+    background-size: cover!important;
+}
+
+.card.--exit-label {
+    overflow: visible;
+}
+
+.card.--exit-label::before {
+    content: "EXIT=>";
+
+    position: absolute;
+    top: -66px;
+    left: 20px;
+
+    font-family: "Press Start 2p", "JetBrains Mono", monospace;
+    font-size: 42px;
+    font-weight: 700;
+    text-shadow:
+    2px 3px 0 black,
+    3px 4px 0 white,
+    5px 7px 0 black;
+
+    cursor: pointer;
+
+    animation:
+            bounce-left 2.8s both infinite,
+            glowing-exit 2.8s ease-out infinite alternate;
+}
+
+.queue-wrap {
+    max-width: 38%;
+    overflow: hidden;
 }
 
 .card.--smith {
@@ -138,6 +195,7 @@
 /*    opacity: 1;*/
 /*}*/
 
+.card-btn,
 .card__controls > button {
     font-size: 20px;
     padding: 0 10px;
@@ -157,6 +215,7 @@
     transition: .1s ease-in;
 }
 
+.card-btn::before,
 .card__controls > button::before {
     background-color: black;
     bottom: 10px;
@@ -172,15 +231,18 @@
     transition: .1s ease-in;
 }
 
+.card-btn:hover,
 .card__controls > button:hover {
     background-color: rgba(80, 233, 239, 0.7)!important;
     border-color: var(--colors-secondary--500);
 }
 
+.card-btn:hover::before,
 .card__controls > button:hover::before {
     background-color: var(--colors-secondary--500);
 }
 
+.card-btn:active,
 .card__controls > button:active {
     transform: translateY(1px);
 }
@@ -319,4 +381,96 @@
 
 .build .js-inventory-menu .card > .card__title {
     display: block;
+}
+
+@keyframes bounce-left {
+    0% {
+        transform: translateX(-48px);
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+    24% {
+        opacity: 1;
+    }
+    40% {
+        transform: translateX(-26px);
+        animation-timing-function: ease-in;
+    }
+    65% {
+        transform: translateX(-13px);
+        animation-timing-function: ease-in;
+    }
+    82% {
+        transform: translateX(-6.5px);
+        animation-timing-function: ease-in;
+    }
+    93% {
+        transform: translateX(-4px);
+        animation-timing-function: ease-in;
+    }
+    22%,
+    52%,
+    72%,
+    84%,
+    95% {
+        transform: translateX(0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translateX(-48px);
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+}
+
+@keyframes glowing-exit {
+    0% {
+        color: var(--color);
+        /*text-shadow: 0 0 1px var(--color);*/
+        opacity: 1;
+    }
+    13% {
+        color: black;
+        text-shadow: 0 8px 1px var(--color);
+        opacity: 0.9;
+    }
+    20% {
+        color: var(--color);
+        /*text-shadow: 0 0 1px var(--color);*/
+        opacity: 1;
+    }
+    27% {
+        color: black;
+        /*text-shadow: 0 8px 1px var(--color);*/
+        opacity: 0.9;
+    }
+    34% {
+        color: var(--color);
+        /*text-shadow: 0 5px 1px var(--color);*/
+        opacity: 1;
+    }
+    40% {
+        color: black;
+        /*text-shadow: 0 8px 1px var(--color);*/
+        opacity: 0.9;
+    }
+    48% {
+        color: var(--color);
+        /*text-shadow: 0 3px 1px var(--color);*/
+        opacity: 1;
+    }
+    55% {
+        color: black;
+        /*text-shadow: 0 9px 1px var(--color);*/
+        opacity: 0.9;
+    }
+    62% {
+        color: var(--color);
+        /*text-shadow: 0 5px 0 var(--color);*/
+        opacity: 1;
+    }
+    100% {
+        color: var(--color);
+        /*text-shadow: 0 8px 0 var(--color);*/
+    }
 }

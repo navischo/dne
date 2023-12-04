@@ -4,7 +4,7 @@ const parent = document.querySelector("#setting-popup");
 const getNewOption = (value, label) => `<option value="${value.toLowerCase()}">${label.toLowerCase()}</option>`;
 
 const updSectorOptions = () => {
-    if (win77.isPlayerOnMap) {
+    if (win77.game.player.isOnMap) {
         let currentSector = "a0";
         const availableSectorArr = [];
         const availablePointsSetsObj = {};
@@ -48,7 +48,7 @@ const updExecutiveOptions = () => {
 }
 
 const updSettingOptions = () => {
-    console.log(win77.game.player.id, win77.game.player.npc);
+    // console.log(win77.game.player.id, win77.game.player.npc);
     updSectorOptions();
     updExecutiveOptions();
 }

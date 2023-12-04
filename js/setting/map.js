@@ -10,12 +10,13 @@ const RENDERER_DELAY = 500;
 const addressField = document.querySelector('#address');
 
 export const map = L.map('map-canvas')
-  .on('load', toggleForm())
-  .on('load', toggleMapFilter())
+  // .on('load', toggleForm())
+  // .on('load', toggleMapFilter())
   .setView({
     lat: 50.45466,
     lng: 30.5238
   }, 10);
+toggleForm();
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -59,7 +60,7 @@ mainMarker.on('moveend', (evt) => {
 const markerGroup = L.layerGroup().addTo(map);
 
 export const renderBalloons = (objects) => {
-  console.log("objects", objects);
+  // console.log("objects", objects);
   objects
     .slice()
     .filter(getFilteredByAll)

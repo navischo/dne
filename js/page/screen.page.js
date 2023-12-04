@@ -1,6 +1,6 @@
 import { getRandomInt } from "../utils/getCardById.js";
 import { win77 } from "../dne-cli.js";
-import { PAGE_NAMES, isItCardsPage } from "../hud/router.hud.js";
+import { PAGE_NAMES, isItCardsPage } from "../router/router.module.js";
 
 const SCREEN_NAMES = [
     `screen-nohud--on-bike`,
@@ -109,30 +109,90 @@ const SCREEN_NAMES = [
     `screen-nohud--night-drive`,
     `screen-nohud--waiting-room`,
     `screen-nohud--random-garage`,
-    `screen-honud--aldecaldo-station`,
+    `screen-nohud--aldecaldo-station`,
     `screen-nohud--free-ride`,
     `screen-nohud--morning-city`,
     `screen-nohud--abadone-house`,
     `screen-nohud--visit`,
     `screen-nohud--me`,
-    `screen-honud--rogue-afterlife`,
+    `screen-nohud--rogue-afterlife`,
     `screen-nohud--v-plus-judy`,
     `screen-nohud--the-end`,
     `screen-nohud--patronus`,
-    `screen-nohud--rebeca-pvp`
+    `screen-nohud--rebeca-pvp`,
+    `screen-nohud--angle`
 ];
 
-const initScreen = () => {
+const initScreen = (all = false, select = false) => {
     const body = document.querySelector("body");
     body.style.backgroundImage = `url('./libs/screen/${SCREEN_NAMES[getRandomInt(SCREEN_NAMES.length)]}.jpg')`;
+
+    if (all) {
+        const backgroundsCount = SCREEN_NAMES.length;
+        const wrap = document.createElement("div");
+        wrap.classList.add("all-background");
+        SCREEN_NAMES.forEach((SCREEN_NAME, i) => {
+            // console.log(`Background ${SCREEN_NAME.replace(`screen-nohud`, "")} successfully loaded ${i + 1} of ${backgroundsCount}`);
+            const backgroundInAllNode = document.createElement("div");
+            backgroundInAllNode.classList.add("background-in-all");
+            backgroundInAllNode.style.backgroundImage = `url("./libs/screen/${SCREEN_NAME}.jpg")`;
+            backgroundInAllNode.dataset.screenName = `${SCREEN_NAME}`;
+            wrap.appendChild(backgroundInAllNode);
+
+        });
+
+        if (select) {
+            wrap.classList.add("--select");
+
+            // wrap.querySelectorAll(".background-in-all")
+            //     .forEach((backgroundInAllNode) => {
+            //         backgroundInAllNode.addEventListener("click", (e) => {
+            //             console.log(e);
+            //             // body.style.backgroundImage = `url("./libs/screen/${SCREEN_NAME}.jpg")`;
+            //             // wrap.remove();
+            //         });
+            //     });
+
+
+            wrap.innerHTML =
+                wrap.innerHTML +
+                `
+                    <button class="js-close-background-select cp-button hud-btn">
+                        <img src="img/img-hud-btn.png" alt="HUD" width="200" height="221">
+                    </button>
+                `;
+            const closeBtn = wrap.querySelector(".js-close-background-select");
+            closeBtn.addEventListener("click", () => {
+                wrap.classList.remove("--visible");
+            });
+            wrap.addEventListener("click", (e) => {
+                if (e.target.classList.contains("background-in-all")) {
+                    body.style.backgroundImage = `url('./libs/screen/${e.target.dataset.screenName}.jpg')`;
+                    wrap.classList.remove("--visible");
+                }
+            });
+        }
+
+        body.appendChild(wrap);
+    }
 }
 
-const initIntervalScreen = () => {
+const initIntervalScreen = (all = false, select = false) => {
     // console.log("Its hud?", win77.router.currentPage === PAGE_NAMES.hud, win77.router.currentPage, PAGE_NAMES.hud);
-    initScreen();
-    setInterval(() => {
+    if (all) {
+        initScreen(all, select);
+    } else {
         initScreen();
-    }, 30000);
+        setInterval(() => {
+            initScreen();
+        }, 30000);
+    }
+
+    const openAllBackgroundSelectBtn = document.querySelector(".js-open-background-select");
+    openAllBackgroundSelectBtn.addEventListener("click", () => {
+        document.querySelector(".all-background")
+            .classList.add("--visible");
+    });
 }
 
 export { initIntervalScreen };

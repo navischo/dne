@@ -7,16 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title class="head-title">DNE</title>
 
+    <!-- START FAVICON -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <!--    <link rel="manifest" href="img/favicon/manifest.json">-->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END FAVICON -->
+
     <link rel="stylesheet" href="css/blocks/setting/normalize.css">
 
     <link rel="stylesheet" href="css/main.css">
 
-<!--    <link rel="stylesheet" href="libs/setting/css/style.css">-->
+    <!--    <link rel="stylesheet" href="libs/setting/css/style.css">-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
           integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
           crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/nouislider@14.6.3/distribute/nouislider.min.css">
-<!--    <link rel="stylesheet" href="libs/setting/css/style-custom.css">-->
+    <!--    <link rel="stylesheet" href="libs/setting/css/style-custom.css">-->
 
 </head>
 <body class="build background-single" data-hash="play" data-lvl="0">
@@ -24,7 +44,20 @@
 <!--<div class="character &#45;&#45;mini">-->
 <!--    <img src="img/img-character-1.png" alt="">-->
 <!--</div>-->
+<div id="achievement-popup" class="achievement --hidden">
+    <div class="achievement__preview">
+        <img class="js-achievement-img achievement__img" src="img/achievements/connecting.png" alt="">
+    </div>
+    <span class="js-achievement-title achievement__title">It`s just a test, promise!</span>
+    <span class="js-achievement-text achievement__text">Ти знайшов правила у телефоні!</span>
+</div>
+
 <div class="dialog-vertical --styled --zero-inbox">
+    <header class="dialog-vertical__header">
+        <button class="js-zero-inbox dialog-vertical__close card-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8px" height="7px" viewBox="0 0 8 7" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M1 6V5h1V4h1V3h2v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1zm0-4V1H0V0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H2V2H1z"/></svg>
+        </button>
+    </header>
     <div class="js-vertical-feed custom-scrollbar --y dialog-vertical__feed">
 
     </div>
@@ -34,24 +67,32 @@
     <button id="rts-btn" class="rts-btn">Press start 2P</button>
 </div>
 
-<div class="game-menu">
+<div id="game-menu" class="game-menu">
     <div class="game-menu__list">
         <h1 class="cybr-title"><a href="consume.html" target="_blank">Does Not Exist</a></h1>
+        <a class="game-menu__list-item">Continue</a>
         <a class="js-open-matchmaking game-menu__list-item">Matchmaking</a>
-        <a href="#setting-popup" class="js-open-setting game-menu__list-item">Setting</a>
-        <a href="#map-popup" class="js-open-map game-menu__list-item">Map</a>
+<!--        <a href="#setting-popup" class="js-open-setting game-menu__list-item">Setting</a>-->
+<!--        <a class="js-open-lollyball game-menu__list-item">Roller</a>-->
+        <!--        <a href="#terminal-popup" class="js-open-terminal game-menu__list-item">Solo</a>-->
+<!--        <a href="#map-popup" class="js-open-map game-menu__list-item">Map</a>-->
         <a class="js-open-cs game-menu__list-item">Gig</a>
-        <a href="wall.html" class="game-menu__list-item" target="_blank">Wall</a>
-        <a href="#pokeball-popup" class="js-open-pokeball game-menu__list-item">Pokeball</a>
-        <a href="#card-builder-popup" class="js-open-card-builder game-menu__list-item">+Record</a>
-        <small class="game-menu__version">0.5</small>
+        <a class="js-open-sublist-mod game-menu__list-item">Mod</a>
+        <a class="js-item-sublist-mod js-open-key-map game-menu__list-item">+Keyboard</a>
+        <a href="#card-builder-popup" class="js-item-sublist-mod js-open-card-builder game-menu__list-item" data-advice-id="loadSound">+Sound</a>
+        <a class="js-item-sublist-mod js-open-background-select game-menu__list-item" data-advice-id="selectBackground">+Background</a>
+        <a class="js-open-sublist-community game-menu__list-item">Community</a>
+        <a href="walls/wall-A17.html" class="js-item-sublist-community game-menu__list-item" target="_blank">Wall</a>
+        <a class="js-item-sublist-community game-menu__list-item" href="https://forms.gle/uBuk9ddVhbqQD7zw9" target="_blank">Bug report</a>
+        <a class="js-item-sublist-community game-menu__list-item" href="https://forms.gle/nyVk7PzrrFVbshDk8" target="_blank">Give me feedback</a>
+        <small class="game-menu__version">0.6</small>
     </div>
     <div class="game-menu__key-tips">
         <b>[Esc] Close</b>
     </div>
 </div>
-
-<div class="sudo-page">
+<!-- style="background: url('img/layout-player-bars.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat"-->
+<div class="sudo-page --win77">
     <div class="windows__bg">
         <div class="windows__bg--inner">
             <div id="load-logo" class="windows__logo">
@@ -60,9 +101,6 @@
                 <div class="windows__logo--inner blue"></div>
                 <div class="windows__logo--inner yellow"></div>
             </div>
-            <script>
-
-            </script>
             <div class="windows__name">
                 <p>Hypnosoft</p>
                 <div class="windows__name--inner">
@@ -114,48 +152,41 @@
     <!--                <button class="js-portal catalog-controls__filter" data-portal="board">BOARD</button>-->
     <!--            </div>-->
     <header class="app-header">
-        <div class="app-header__anchor"><span class="app-header__anchor-text" data-advice-id="freedomCityNet">Fredom-City NetWire</span>
+        <div class="app-header__anchor"><span class="app-header__anchor-text" data-advice-id="freedomCityNet">Freedom City NetWire</span>
         </div>
-        <nav>
-            <ul class="nav">
-                <li class="nav__item">
-                    <a class="js-swipe-page slide-250 nav__link"><span class="nav__link__element">CARDS</span></a>
-                    <div class="nav__item-sublist">
-                        <div class="catalog-controls__item">
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">NPC</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">CLASS</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">LOOT</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">SOUND</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">PRJ</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">DIA</button>
-                            <button class="cp-button f-btn js-init-catalog catalog-controls__filter">ANTI</button>
-                        </div>
+        <ul class="nav">
+            <li class="js-cards-nav-link nav__item">
+                <a class="js-swipe-page slide-250 nav__link"><span class="nav__link-element">CARDS</span></a>
+                <div class="nav__item-sublist">
+                    <div class="catalog-controls__item">
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">AVATAR</button>-->
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">NPC</button>-->
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">CLASS</button>-->
+                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">LOOT</button>
+                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">SOUND</button>
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">PRJ</button>-->
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">DIA</button>-->
+<!--                        <button class="cp-button f-btn js-init-catalog catalog-controls__filter">ANTI</button>-->
                     </div>
-                </li>
-                <!--                    <li class="nav__item">-->
-                <!--                        <a class="nav__link nav__link&#45;&#45;active" href="#">-->
-                <!--                            <span class="nav__link__element">BOARD</span><span class="nav__link__element"><span class="badge">11</span></span>-->
-                <!--                        </a>-->
-                <!--                    </li>-->
-                <li class="nav__item">
-                    <a class="js-swipe-page slide-500 nav__link"><span class="nav__link__element">ADMIN</span></a>
-                </li>
-                <li class="nav__item">
-                    <a class="js-swipe-page slide-150 nav__link" href="#"><span
-                            class="nav__link__element">PLAY</span></a>
-                </li>
-                <li class="nav__item">
-                    <a class="js-swipe-page slide-200 nav__link" href="#"><span class="nav__link__element">EVENT</span></a>
-                    <div class="nav__item-sublist --right">
-                        <div class="catalog-controls__item">
-                            <a href="#setting-popup" class="js-open-setting cp-button f-btn catalog-controls__filter">SETTING</a>
-                            <a href="#map-popup" class="js-open-map cp-button f-btn catalog-controls__filter">MAP</a>
-                        </div>
+                </div>
+            </li>
+            <li class="nav__item">
+                <a class="js-swipe-page slide-500 nav__link"><span class="nav__link-element">ADMIN</span></a>
+            </li>
+            <li class="nav__item">
+                <a class="js-swipe-page slide-150 nav__link" href="#"><span
+                        class="nav__link-element">PLAY</span></a>
+            </li>
+            <li class="nav__item">
+                <a class="js-swipe-page slide-200 nav__link" href="#"><span class="nav__link-element">EVENT</span></a>
+                <div class="nav__item-sublist --right">
+                    <div class="catalog-controls__item">
+                        <a href="#setting-popup" class="js-open-setting cp-button f-btn catalog-controls__filter">SETTING</a>
+                        <a href="#map-popup" class="js-open-map cp-button f-btn catalog-controls__filter">MAP</a>
                     </div>
-                </li>
-            </ul>
-        </nav>
-        <div></div>
+                </div>
+            </li>
+        </ul>
     </header>
     <!--            <p class="append-buttons">-->
     <!--                &lt;!&ndash;        <a href="#" class="prepend-2-slides">Prepend 2 Slides</a>&ndash;&gt;-->
@@ -186,6 +217,12 @@
 <button id="hud-btn" class="cp-button hud-btn hud-btn--fixed">
     <img src="img/img-hud-btn.png" alt="HUD" width="200" height="221">
 </button>
+
+<div class="js-next-btns next-btns --fixed">
+    <button id="next-btn" class="cp-button next-btn">
+        NEXT
+    </button>
+</div>
 
 <div id="cutscene-parent">
 
@@ -253,7 +290,7 @@
 
         </div>
         <div class="card-builder__card-output" style="padding-top: 45px">
-            <div id="dne-card-demo-sub-zero" style="display: block;">
+            <div style="display: block;">
                 <article class="card" data-advice-id="sound">
                     <div class="js-card-controls card__controls">
                         <button>+</button>
@@ -276,7 +313,7 @@
                              alt="">
                     </div>
                     <p class="card__description">Демо можна відправити Лейблу, зіграти на вечірці <br>або навідь видати
-                        на вінілі. <br><br>Більше людей його почують, більше шанс на нове замовлення.</p>
+                        на вінілі.</p>
                     <footer class="card__footer">
 
                     </footer>
@@ -332,8 +369,10 @@
             </a>
         </div>
         <p class="map__descr">
-            Ми створили цю карту із власних спогадів про час, проведений у затишних місцях нескінченного вирію творчої сцени Києва.<br>
-            Тицяй на шахи і переміщуйся між секторами, щоб відкривати нові поінти інтересу, локації, персонажів та саунд.
+            Ми створили цю карту із власних спогадів про час, проведений у затишних місцях нескінченного вирію творчої
+            сцени Києва.<br>
+            Тицяй на шахи і переміщуйся між секторами, щоб відкривати нові поінти інтересу, локації, персонажів та
+            саунд.
         </p>
     </div>
     <div class="map__nav">
@@ -388,45 +427,74 @@
 </div>
 
 <div id="pokeball-popup" class="pokeball-modal white-popup mfp-hide">
-    <div class="tinder">
-        <div class="tinder--status">
-            <i class="fa fa-remove"></i>
-            <i class="fa fa-heart"></i>
-        </div>
 
-        <div class="js-tinder-cards tinder--cards">
-
-<!--            <div class="tinder&#45;&#45;card">-->
-<!--                <img src="https://placeimg.com/600/300/animals">-->
-<!--                <h3>Demo card 2</h3>-->
-<!--                <p>This is a demo for Tinder like swipe cards</p>-->
-<!--            </div>-->
-<!--            <div class="tinder&#45;&#45;card">-->
-<!--                <img src="https://placeimg.com/600/300/nature">-->
-<!--                <h3>Demo card 3</h3>-->
-<!--                <p>This is a demo for Tinder like swipe cards</p>-->
-<!--            </div>-->
-<!--            <div class="tinder&#45;&#45;card">-->
-<!--                <img src="https://placeimg.com/600/300/tech">-->
-<!--                <h3>Demo card 4</h3>-->
-<!--                <p>This is a demo for Tinder like swipe cards</p>-->
-<!--            </div>-->
-<!--            <div class="tinder&#45;&#45;card">-->
-<!--                <img src="https://placeimg.com/600/300/arch">-->
-<!--                <h3>Demo card 5</h3>-->
-<!--                <p>This is a demo for Tinder like swipe cards</p>-->
-<!--            </div>-->
-        </div>
-
-        <div class="tinder--buttons">
-            <button id="nope"><i class="fa fa-remove"></i></button>
-            <button id="love"><i class="fa fa-heart"></i></button>
-        </div>
-    </div>
 </div>
 
+<div id="terminal-popup" class="terminal-modal white-popup mfp-hide">
+    <a href="#quest-popup" class="js-open-quest terminal">
+        <div class="js-terminal screen"></div>
+    </a>
+</div>
 
 <div id="setting-popup" class="cp-body setting-modal white-popup mfp-hide"><!--custom-scrollbar --y-->
+    <div class="js-enter-city enter-city">
+        <header class="enter-city__header">
+            <h2 class="enter-city__title">Одже ти переїхав <br>у Фрідом-Сіті</h2>
+            <p class="enter-city__description">
+                У тебе є простір для життя і роботи<br> та банкролл на місяць<br><br>
+
+                Фокус. Обери шлях. Як тебе звуть? Що ти прийшов зробити?<br>
+                Як називається твій простір?<br><br>
+
+                Крок другий. Твоя крю. Хто вони? Що у вас спільного?<br><br>
+                З тобою два товариші та місто пригод прямо по курсу.<br>
+                Чого чекаємо?
+            </p>
+        </header>
+        <div class="enter-city__form">
+            <div class="form-scene">
+                <div class="cube">
+                    <nav class="steps">
+                        <div class="dot step_1 done"></div>
+                        <div class="dot step_2"></div>
+                        <div class="dot step_3"></div>
+                        <div class="dot step_4"></div>
+                    </nav>
+                    <div class="cube__face cube__face--front" id="step__1">
+                        <div class="container">
+                            <input id="my-space-id" type="text" placeholder="Вигадай назву для свого простору">
+                            <div class="btn">
+                                <span data-step="1">Continue</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cube__face cube__face--bottom" id="step__2">
+                        <div class="container">
+                            <input type="number" placeholder="Його місячний бюджет?">
+                            <div class="btn">
+                                <span data-step="2">Continue</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cube__face" id="step__3">
+                        <div class="container" style="display: flex;">
+                            <input type="text" class="label" placeholder="Ви неймовірні?" disabled>
+                            <div class="right">
+                                <label>Ні</label>
+                                <div class="checkbox">
+                                    <div class="circle"></div>
+                                </div>
+                                <label>Так</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="welcome">
+                <div class="content">Welcome !</div>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- Карта объявлений -->
@@ -465,17 +533,26 @@
                         <option value="0">Не для гостей</option>
                     </select>
                     <fieldset id="housing-features" class="keks-map__features">
-                        <input type="checkbox" name="features" value="wifi" id="filter-wifi" class="keks-map__checkbox visually-hidden">
+                        <input type="checkbox" name="features" value="wifi" id="filter-wifi"
+                               class="keks-map__checkbox visually-hidden">
                         <label class="keks-map__feature keks-map__feature--wifi" for="filter-wifi">Wi-Fi</label>
-                        <input type="checkbox" name="features" value="dishwasher" id="filter-dishwasher" class="keks-map__checkbox visually-hidden">
-                        <label class="keks-map__feature keks-map__feature--dishwasher" for="filter-dishwasher">Посудомоечная машина</label>
-                        <input type="checkbox" name="features" value="parking" id="filter-parking" class="keks-map__checkbox visually-hidden">
-                        <label class="keks-map__feature keks-map__feature--parking" for="filter-parking">Парковка</label>
-                        <input type="checkbox" name="features" value="washer" id="filter-washer" class="keks-map__checkbox visually-hidden">
-                        <label class="keks-map__feature keks-map__feature--washer" for="filter-washer">Стиральная машина</label>
-                        <input type="checkbox" name="features" value="elevator" id="filter-elevator" class="keks-map__checkbox visually-hidden">
+                        <input type="checkbox" name="features" value="dishwasher" id="filter-dishwasher"
+                               class="keks-map__checkbox visually-hidden">
+                        <label class="keks-map__feature keks-map__feature--dishwasher" for="filter-dishwasher">Посудомоечная
+                            машина</label>
+                        <input type="checkbox" name="features" value="parking" id="filter-parking"
+                               class="keks-map__checkbox visually-hidden">
+                        <label class="keks-map__feature keks-map__feature--parking"
+                               for="filter-parking">Парковка</label>
+                        <input type="checkbox" name="features" value="washer" id="filter-washer"
+                               class="keks-map__checkbox visually-hidden">
+                        <label class="keks-map__feature keks-map__feature--washer" for="filter-washer">Стиральная
+                            машина</label>
+                        <input type="checkbox" name="features" value="elevator" id="filter-elevator"
+                               class="keks-map__checkbox visually-hidden">
                         <label class="keks-map__feature keks-map__feature--elevator" for="filter-elevator">Лифт</label>
-                        <input type="checkbox" name="features" value="conditioner" id="filter-conditioner" class="keks-map__checkbox visually-hidden">
+                        <input type="checkbox" name="features" value="conditioner" id="filter-conditioner"
+                               class="keks-map__checkbox visually-hidden">
                         <label class="keks-map__feature keks-map__feature--conditioner" for="filter-conditioner">Кондиционер</label>
                     </fieldset>
                 </form>
@@ -485,7 +562,7 @@
         <!-- Форма объявления -->
         <section class="notice">
             <h2 class="cp-h2 notice__title">Ваш івент</h2>
-            <form class="ad-form" action='https://27.javascript.pages.academy/keksobooking' method="post" enctype="multipart/form-data" autocomplete="off">
+            <form class="ad-form" method="post" enctype="multipart/form-data" autocomplete="off">
                 <fieldset class="ad-form-header">
                     <legend class="ad-form-header__title">Постер (для анонсу)</legend>
                     <div class="ad-form-header__upload">
@@ -493,16 +570,19 @@
                             <img src="img/muffin-grey.svg" alt="Постер події" width="40" height="44">
                         </div>
                         <div class="ad-form__field">
-                            <input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden" accept="image/png, image/jpeg">
+                            <input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden"
+                                   accept="image/png, image/jpeg">
                             <label class="ad-form-header__drop-zone" for="avatar">Завантажити<br>фото...</label>
                         </div>
-                        <p class="ad-form-header__info">Заповніть усі необхідні поля, оберіть вартість входу, завантажте флаєр та мапу локації. Вигадайте цікавий опис. Він зробить івент більш живим та привабливим.<br>
+                        <p class="ad-form-header__info">Заповніть усі необхідні поля, оберіть вартість входу, завантажте
+                            флаєр та мапу локації. Вигадайте цікавий опис. Він зробить івент більш живим та привабливим.<br>
                             <br>Обличчя івенту має давати гостям повне уявлення про його зміст.</p>
                     </div>
                 </fieldset>
                 <fieldset class="field ad-form__element ad-form__element--wide">
                     <label class="ad-form__label glow text" for="title">Заголовок івенту</label>
-                    <input id="title" name="title" type="text" placeholder="Вечірка твоїх друзів" value="Ma perfect event" required>
+                    <input id="title" name="title" type="text" placeholder="Вечірка твоїх друзів"
+                           value="Ma perfect event" required>
                 </fieldset>
                 <fieldset class="field ad-form__element ad-form__element--wide" style="display: none">
                     <label class="ad-form__label glow text" for="address">Адреса (координати)</label>
@@ -547,7 +627,7 @@
                 </fieldset>
                 <fieldset class="field ad-form__element">
                     <label class="ad-form__label glow text" for="price">Ціна за вхід</label>
-                    <input id="price" name="price" type="number" step="100" placeholder="200"required>
+                    <input id="price" name="price" type="number" step="100" placeholder="200" required>
                     <div class="ad-form__slider"></div>
                 </fieldset>
                 <fieldset class="field ad-form__element ad-form__element--time">
@@ -585,23 +665,35 @@
 
                 <fieldset class="field ad-form__element ad-form__element--wide">
                     <label class="ad-form__label glow text" for="description">Опис</label>
-                    <textarea id="description" name="description" placeholder="Розкажи про те, що мені дасть візит до твого івенту та навіщо мені це потрібно"></textarea>
+                    <textarea id="description" name="description"
+                              placeholder="Розкажи про те, що мені дасть візит до твого івенту та навіщо мені це потрібно"></textarea>
                 </fieldset>
 
-                <fieldset class="ad-form__element ad-form__element--wide features" style="margin-top: 40px; display: none">
-                    <legend>Доступність: танцмайдан, вулиця, Wi-Fi, фудкорт, майстерня, тату, маркетплейс, чіл-зона</legend>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="wifi" id="feature-wifi">
+                <fieldset class="ad-form__element ad-form__element--wide features"
+                          style="margin-top: 40px; display: none">
+                    <legend>Доступність: танцмайдан, вулиця, Wi-Fi, фудкорт, майстерня, тату, маркетплейс, чіл-зона
+                    </legend>
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="wifi"
+                           id="feature-wifi">
                     <label class="features__label features__label--wifi" for="feature-wifi">Wi-Fi</label>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="dishwasher" id="feature-dishwasher">
-                    <label class="features__label features__label--dishwasher" for="feature-dishwasher">Посудомоечная машина</label>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="parking" id="feature-parking">
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="dishwasher"
+                           id="feature-dishwasher">
+                    <label class="features__label features__label--dishwasher" for="feature-dishwasher">Посудомоечная
+                        машина</label>
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="parking"
+                           id="feature-parking">
                     <label class="features__label features__label--parking" for="feature-parking">Парковка</label>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="washer" id="feature-washer">
-                    <label class="features__label features__label--washer" for="feature-washer">Стиральная машина</label>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="elevator" id="feature-elevator">
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="washer"
+                           id="feature-washer">
+                    <label class="features__label features__label--washer" for="feature-washer">Стиральная
+                        машина</label>
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="elevator"
+                           id="feature-elevator">
                     <label class="features__label features__label--elevator" for="feature-elevator">Лифт</label>
-                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="conditioner" id="feature-conditioner">
-                    <label class="features__label features__label--conditioner" for="feature-conditioner">Кондиционер</label>
+                    <input class="features__checkbox visually-hidden" type="checkbox" name="feature" value="conditioner"
+                           id="feature-conditioner">
+                    <label class="features__label features__label--conditioner"
+                           for="feature-conditioner">Кондиционер</label>
                 </fieldset>
 
                 <fieldset class="ad-form__element ad-form__element--wide" style="margin-top: 40px">
@@ -618,7 +710,8 @@
                     <button class="js-set-setting cp-button ad-form__submit" type="submit">
                         <span class="submit">Створити</span>
                     </button>
-                    або <button class="cp-button ad-form__reset" type="reset">очистити</button>
+                    або
+                    <button class="cp-button ad-form__reset" type="reset">очистити</button>
                 </fieldset>
             </form>
         </section>
@@ -644,7 +737,8 @@
                 <li class="popup__feature popup__feature--washer"></li>
                 <li class="popup__feature popup__feature--elevator"></li>
             </ul>
-            <p class="popup__description">Великолепная квартира-студия в центре Токио. Подходит как туристам, так и бизнесменам. Квартира полностью укомплектована и недавно отремонтирована.</p>
+            <p class="popup__description">Великолепная квартира-студия в центре Токио. Подходит как туристам, так и
+                бизнесменам. Квартира полностью укомплектована и недавно отремонтирована.</p>
             <div class="popup__photos">
                 <img src="" class="popup__photo" width="45" height="40" alt="Фотография жилья">
             </div>
@@ -672,44 +766,25 @@
         <button class="js-exit-matchmaking cp-button hud-btn">
             <img src="img/img-hud-btn.png" alt="HUD" width="200" height="221">
         </button>
+        <div class="score --round">
+            <div class="js-round-left">0</div>
+            of
+            <div class="js-round-limit">7</div>
+        </div>
         <div class="squad matchmaking__squad">
-            <div class="squad__cell">
-                <button class="cp-button squad__plus">+</button>
+            <div class="js-squad-cell js-squad-mate squad__cell">
+                <button class="js-invite-random cp-button squad__plus">+</button>
             </div>
-            <section class="squad__cell">
+            <section class="js-squad-cell js-squad-host squad__cell">
                 <header class="js-player-matchmaking squad__player">
                     <b class="squad__player-lvl"><span class="js-player-lvl">5</span></b>
                     <h3 class="js-player-name squad__player-name">navischo</h3>
                 </header>
                 <div class="js-player-card">
-                    <div id="dne-card-class-ttter" style="display: block;">
-                    <article class="card">
-                        <div class="js-card-controls card__controls">
-                            <button>+</button>
-                        </div>
-                        <header class="card__header">
-                            <div class="card__header-left">
-                                <small class="js card__id">#class-ttter</small>
-                                <h2 class="card__title">Татуєр</h2><!-- data-advice-id="class" -->
-                                <small class="card__limits">Клас</small>
-                            </div>
-                            <div class="card__header-right">
-                                <b class="card__bonus">+1</b>
-                            </div>
-                        </header>
-                        <a class="card__preview">
-                            <img class="card__preview-img" src="https://lh5.googleusercontent.com/WUvRRRJpFIACJw50hOycHsKNnwSB3SdJSs-_5JQk11pKHMoDstW_n9nzWwb28y_wTUU=w2400" alt="">
-                        </a>
-                        <p class="card__description">Наб'є тобі татуху. Кожне тату дає власнику особливу властивість до кінця гри, яку саме дізнаєшся лише згодом.</p>
-                        <footer class="card__footer">
-
-                        </footer>
-                    </article>
-                </div>
                 </div>
             </section>
-            <div class="squad__cell">
-                <button class="cp-button squad__plus">+</button>
+            <div class="js-squad-cell js-squad-mate squad__cell">
+                <button class="js-invite-random cp-button squad__plus">+</button>
             </div>
         </div>
         <div class="matchmaking__controls">
@@ -722,33 +797,139 @@
                 <footer class="matchmaking__footer">
                     <h3 class="matchmaking__status">Matchmaking...</h3>
                     <div class="matchmaking__loader">
-                        <button class="settings-btn">Settings</button>
+                        <button class="js-open-mm-settings settings-btn">Settings</button>
                         <div class="loader"></div>
                     </div>
                 </footer>
             </section>
             <button class="js-start-matchmaking matchmaking__start">START</button>
         </div>
-    </div>
-    <script>
+        <div class="js-players-wrap matchmaking__players">
+            <section class="js-players-matchmaking players-for-mm">
 
-    </script>
+            </section>
+        </div>
+        <div class="matchmaking__players-controls">
+            <button class="js-switch-player cp-button">Switch player</button>
+        </div>
+    </div>
 </div>
 
+
+<div id="key-map">
+    <ul class="js-keys ctrl-keys">
+
+    </ul>
+    <div class="key-tips">
+        <b>[Esc] Close</b>
+    </div>
+</div>
 
 <div id="cs-game">
     <div class="cyber-strike --mp4" style="">
         <div class="cyber-strike__lobby">
-            <div class="cyber-strike__menu">
+            <div class="js-cs-game-controls cyber-strike__menu">
                 <a href="#quest-popup" class="js-open-quest cyber-strike__menu-link">Gig</a>
                 <a href="#load-popup" class="js-open-load cyber-strike__menu-link">Load</a>
-                <a href="#" class="cyber-strike__menu-link">Options</a>
+                <a class="cyber-strike__menu-link">Options</a>
                 <a href="#" class="js-close-cs cyber-strike__menu-link">Quit</a>
-                <a href="#" class="cybr-title --cs-logo cyber-strike__menu-link">Cyber Strike</a>
+                <a href="https://www.cyberpunk.net/ua/en/" class="cybr-title --cs-logo cyber-strike__menu-link"
+                   target="_blank"></a>
             </div>
         </div>
         <div class="cyber-strike__mp4-bg">
 
+        </div>
+    </div>
+</div>
+
+<div id="lollyball">
+    <div class="lollyball">
+        <button class="js-exit-lollyball lollyball__exit cp-button hud-btn">
+            <img src="img/img-hud-btn.png" alt="HUD" width="200" height="221">
+        </button>
+        <header class="app-header --lollyball">
+            <nav>
+                <ul class="nav">
+                    <li class="nav__item">
+                        <a class="nav__link"><span class="nav__link-element">CARDS</span></a>
+                        <div class="nav__item-sublist">
+                            <div class="catalog-controls__item">
+                                <button class="js-change-lollyball cp-button f-btn catalog-controls__filter">NPC
+                                </button>
+                                <button class="js-change-lollyball cp-button f-btn catalog-controls__filter">SOUND
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav__item">
+                        <a class="js-my-lollyball nav__link"><span class="nav__link-element">My</span></a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="js-players-lollyball nav__link"><span class="nav__link-element">PLAYERS</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="js-tinder-wrapper tinder --visible">
+            <div class="tinder-status">
+                <i class="fa fa-remove"></i>
+                <i class="fa fa-heart"></i>
+            </div>
+
+            <div class="js-tinder-cards tinder-cards">
+
+                <!--            <div class="tinder&#45;&#45;card">-->
+                <!--                <img src="https://placeimg.com/600/300/animals">-->
+                <!--                <h3>Demo card 2</h3>-->
+                <!--                <p>This is a demo for Tinder like swipe cards</p>-->
+                <!--            </div>-->
+                <!--            <div class="tinder&#45;&#45;card">-->
+                <!--                <img src="https://placeimg.com/600/300/nature">-->
+                <!--                <h3>Demo card 3</h3>-->
+                <!--                <p>This is a demo for Tinder like swipe cards</p>-->
+                <!--            </div>-->
+                <!--            <div class="tinder&#45;&#45;card">-->
+                <!--                <img src="https://placeimg.com/600/300/tech">-->
+                <!--                <h3>Demo card 4</h3>-->
+                <!--                <p>This is a demo for Tinder like swipe cards</p>-->
+                <!--            </div>-->
+                <!--            <div class="tinder&#45;&#45;card">-->
+                <!--                <img src="https://placeimg.com/600/300/arch">-->
+                <!--                <h3>Demo card 5</h3>-->
+                <!--                <p>This is a demo for Tinder like swipe cards</p>-->
+                <!--            </div>-->
+            </div>
+
+            <div class="tinder-buttons">
+                <button id="nope"><i class="fa fa-remove"></i></button>
+                <button id="love"><i class="fa fa-heart"></i></button>
+            </div>
+        </div>
+        <div class="js-my my">
+            <div class="my-game-cards">
+                <div class="js-my-sound-swiper swiper">
+                    <div class="js-my-sound-wrapper swiper-wrapper">
+
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div class="my-card">
+                <img class="js-my-img my-card__img" src="libs/players/avatar-1.jpg"> <!--${img}-->
+                <h3 class="js-my-name my-card__title">${title}</h3>
+                <p class="js-my-description my-card__description">Насолоджуйся мною не поспішаючи</p>
+            </div>
+            <div class="js-my-npc my-game-cards --right">
+                <div class="js-my-npc-swiper swiper">
+                    <div class="js-my-npc-wrapper swiper-wrapper">
+
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -776,134 +957,16 @@
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
         crossorigin=""></script>
 <script src="https://unpkg.com/nouislider@14.6.3/distribute/nouislider.min.js"></script>
-<script type="module" src="js/setting/setting.module.js" ></script>
+<script type="module" src="js/setting/setting.module.js"></script>
 
 <!-- require for initTinder.js -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 
-
-<script type="module" src="js/dne-cli.js"></script>
-<script type="module" src="js/swiper/swiper.module.js"></script>
-<script type="module" src="js/cards/structure.cards.js"></script>
-<script type="module" src="js/page/dom.page.js"></script>
-<script type="module" src="js/cards/dom.cards.js"></script>
-<script type="module" src="js/cards/doorDom.cards.js"></script>
-<script type="module" src="js/catalog/dom.catalog.js"></script>
-<script type="module" src="js/catalog/chips.catalog.js"></script>
-<script type="module" src="js/hud/balance.hud.js"></script>
-<script type="module" src="js/hud/score.hud.js"></script>
-<script type="module" src="js/hud/time.hud.js"></script>
-<script type="module" src="js/hud/router.hud.js"></script>
-<script type="module" src="js/hud/dom.hud.js"></script>
-<script type="module" src="js/hud/inventory.hud.js"></script>
-<script type="module" src="js/hud/tab.hud.js"></script>
-<script type="module" src="js/hud/fon.hud.js"></script>
-<script type="module" src="js/hud/dialogCli.hud.js"></script>
-<script type="module" src="js/quest/structure.quest.js"></script>
-<script type="module" src="js/hud/btn.hud.js"></script>
-<script type="module" src="js/page/screen.page.js"></script>
-<script type="module" src="js/page/advice.page.js"></script>
-<script type="module" src="js/page/cutscene.page.js"></script>
-<script type="module" src="js/page/map.page.js"></script>
-<script type="module" src="js/popup/save.popup.js"></script>
-<script type="module" src="js/inInteraction/interface.inInteraction.js"></script>
-<script type="module" src="js/utils/initCybrTitle.js"></script>
-<script type="module" src="js/utils/initHypnosoftLoader.js"></script>
-<script type="module" src="js/utils/toggleHUD.js"></script>
-<script type="module" src="js/utils/initOneMoreBtn.js"></script>
-<script type="module" src="js/utils/initCredits.js"></script>
-<script type="module" src="js/utils/matchGenreBonus.js"></script>
-<script type="module" src="js/utils/initHotline.js"></script>
-<script type="module" src="js/utils/initGameBoy.js"></script>
-<script type="module" src="js/utils/initTinder.js"></script>
-
-<script type="module" src="js/hud/chat.hud.jquery.js"></script>
-
-<!--<script type="module" src="js/utils/initCardPreview.js"></script>-->
-
-
 <script type="module">
-    import {initInventoryPopupJquery} from "./js/utils/initInventoryPopup.jquery.js";
-    import {initKeyboard} from "./js/utils/initKeyboard.js";
-    import {initCardBuilder} from "./js/hud/cardBuilder.hud.js";
-    import {initNokiaPopup} from "./js/hud/fon.hud.js";
-    import {quests} from "./js/quest/structure.quest.js";
-    import {initQuest} from "./js/quest/dom.quest.js";
-    import {initIntervalScreen} from "./js/page/screen.page.js";
-    import {redrawMap, drawMapModal} from "./js/page/map.page.js";
-    import {dialog} from "./js/hud/dialog.hud.js";
-    import { initCollector } from "./js/utils/initCollector.js";
-    import { initSettingOptionsUpdate } from "./js/utils/updSettingOptions.js";
-    import { initGameBoy } from "./js/utils/initGameBoy.js";
-    import { initMatchMaking } from "./js/utils/initMatchMaking.js";
-    import { initTinder } from "./js/utils/initTinder.js";
+    import { initApp } from "./js/init.app.js";
 
-    initInventoryPopupJquery();
-
-    $('.js-open-card-builder').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    initCardBuilder();
-
-    $('.js-phone').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-    const fon = document.querySelector(".js-phone");
-    fon.addEventListener("click", () => {
-        fon.classList.remove("--shake");
-    });
-
-    initNokiaPopup();
-
-    $('.js-dialog').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    dialog.init();
-
-    $('.js-open-quest').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    initQuest(quests.bossDead);
-
-    $('.js-open-map').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    drawMapModal();
-    redrawMap();
-
-    $('.js-open-load').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    $('.js-open-pokeball').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    $('.js-open-setting').magnificPopup({
-        type: 'inline',
-        midClick: true
-    });
-
-    win77.swiper.slideTo(2, 0);
-    initIntervalScreen();
-    initKeyboard();
-    initCollector();
-    initSettingOptionsUpdate();
-    initGameBoy();
-    initMatchMaking();
-    initTinder();
+    initApp();
 </script>
 </body>
 </html>

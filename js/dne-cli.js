@@ -1,11 +1,13 @@
 import { getRandomInt, moveCardById } from "./utils/getCardById.js";
 import { getCardElement } from "./cards/template.cards.js";
 import { appendNewTop } from "./theday/endgame.theday.js";
+import { getAchievement } from "./utils/initAchievements.js"
 
 class DNECli {
     constructor() {
-        this.isPlayerOnMap = false;
         this.inQuestTime = 0;
+        this.mm = null;
+        this.budgetAccepted = false;
     }
 
     timer(h, m, s, maxSec, maxMin, maxHour) {
@@ -58,6 +60,14 @@ class DNECli {
         this.game.event.settings = settingsObj;
     }
 
+    findPlayerObj(id) {
+        if (id === this.game.player.id) {
+            return this.game.player;
+        } else {
+            return Array.from(this.lobby).find((player) => player.id === id);
+        }
+    }
+
     giveIncomeToPlayer(income) {
         this.game.player.balance.bankroll = this.game.player.balance.bankroll + income;
     }
@@ -73,9 +83,9 @@ class DNECli {
         body.querySelector(".js-bankroll-balance").textContent = win77.game.player.balance.bankroll;
     }
 
-    giveSkillPointsToPlayer(count) {
-        this.game.player.balance.skillPoints = this.game.player.balance.skillPoints + count;
-        if (this.game.player.balance.skillPoints >= 10) {
+    matchGameResult() {
+        const maxRounds = win77.game.options?.roundLimit ? win77.game.options.roundLimit : 7;
+        if (this.game.round >= maxRounds) {
             this.game.final = {
                 result: {
                     bankroll: this.game.player.balance.bankroll
@@ -83,17 +93,34 @@ class DNECli {
             };
             this.game.player.lvl = this.game.player.lvl + 1;
 
-            localStorage.setItem("bankroll", `${this.game.player.balance.bankroll}`);
-            localStorage.setItem("lvl", `${this.game.player.lvl}`);
+            // localStorage.setItem("bankroll", `${this.game.player.balance.bankroll}`);
+            localStorage.setItem(`${this.game.player.id}-lvl`, `${this.game.player.lvl}`);
             appendNewTop(this.game.player.id, this.game.player.balance.bankroll);
             console.log("Seems like you win the game. Congratulations!", win77.game);
         }
+    }
 
+    giveSkillPointsToPlayer(count) {
+        this.game.player.balance.skillPoints = this.game.player.balance.skillPoints + count;
         return this.game.player.balance.skillPoints;
+    }
+
+    giveSkillPointsTo(id, count) {
+        const playerObj = this.findPlayerObj(id);
+        playerObj.balance.skillPoints = playerObj.balance.skillPoints + count;
+        return playerObj.balance.skillPoints;
     }
 
     getSkillPointsFromPlayer(count) {
         this.game.player.balance.skillPoints = this.game.player.balance.skillPoints - count;
+        this.game.player.balance.skillPoints < 0 ? this.game.player.balance.skillPoints = 0 : "";
+    }
+
+    getSkillPointsFrom(id, count) {
+        const playerObj = this.findPlayerObj(id);
+        playerObj.balance.skillPoints = playerObj.balance.skillPoints - count;
+        playerObj.balance.skillPoints < 0 ? playerObj.balance.skillPoints = 0 : "";
+        return playerObj.balance.skillPoints;
     }
 
     putCardAtPlayersHand(count = 1) {
@@ -101,6 +128,26 @@ class DNECli {
             const soundSet = this.game.catalog.sound;
             const randomId = Array.from(soundSet).map((soundCard) => soundCard.id)[getRandomInt(soundSet.size)];
             moveCardById(randomId, soundSet, this.game.player.hand);
+        }
+    }
+
+    giveCardsTo(id, count) {
+        const playerObj = this.findPlayerObj(id);
+        for (let i = 0; i < count; i++) {
+            if (playerObj.hand.size < 5) {
+                const soundSet = this.game.catalog.sound;
+                const randomId = Array.from(soundSet).map((soundCard) => soundCard.id)[getRandomInt(soundSet.size)];
+                moveCardById(randomId, soundSet, playerObj.hand);
+            } else {
+                return;
+            }
+        }
+        console.log("giveCardsTo", id, count, playerObj.hand);
+    }
+
+    fillPlayersHand() {
+        if (this.game.player.hand.size < 5) {
+            this.putCardAtPlayersHand(5 - this.game.player.hand.size);
         }
     }
 
@@ -117,6 +164,32 @@ class DNECli {
 
     giveEnergyPointsToPlayer(count) {
         this.game.player.balance.energy = this.game.player.balance.energy + count;
+    }
+
+    getSocialPointsFromPlayer(count = 1) {
+        this.game.event.settings.socialPoints = +win77.game.event.settings.socialPoints - +count;
+
+        for (let i = 0; i < count; i++) {
+            const bar = document.querySelector(".js-player-social-points > *:last-child");
+            bar?.remove();
+        }
+    }
+
+    giveSocialPointToPlayer() {
+        this.game.event.settings.socialPoints++;
+
+        const parent = document.querySelector(".js-player-social-points");
+        const bar = document.createElement("div");
+        bar.classList.add("squad-unit__bars-item");
+        parent?.appendChild(bar);
+    }
+
+    getAchievement(id) {
+        getAchievement(id);
+    }
+
+    clearAchievements() {
+        localStorage.removeItem("achievements");
     }
 }
 

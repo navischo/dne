@@ -1,4 +1,39 @@
 /* START CUSTOM DNE-CARDS STYLES */
+#dne-card-avatar-ttter .card__preview {
+    transform: scale(1.6) translate(0, 40px);
+}
+
+#dne-card-avatar-support .card__preview {
+    transform: scale(1.5) translate(14px, 35px);
+}
+
+#dne-card-avatar-writer .card__preview {
+    transform: scale(1.3) translate(6px, 58px);
+}
+
+#dne-card-avatar-netrunner .card__preview {
+    transform: scale(1.59) translate(0, 38px);
+}
+
+#dne-card-avatar-dj .card__preview {
+    transform: scale(1.36) translate(-6px, 25px);
+}
+
+#dne-card-avatar-dragonborn .card__preview {
+    transform: scale(1.6) translate(20px, 45px);
+}
+
+#dne-card-avatar-olivye .card__preview {
+    transform: scale(1.1) translate(4px, 0);
+    position: absolute;
+    bottom: 0;
+}
+
+#dne-card-avatar-writer .card__id,
+#dne-card-avatar-dragonborn .card__id,
+#dne-card-avatar-olivye .card__id
+{opacity: 0}
+
 #dne-card-elias-jensen .card__preview {
     max-height: 265px;
 }
@@ -16,7 +51,47 @@
     bottom: 20px;
 
     color: white;
-    text-shadow: 1px 2px 5px black;
+    text-shadow: 2px 1px 0 black;
+}
+
+#dne-card-sonya-xb77 .card__preview {
+    position: absolute;
+    max-width: 65%;
+    left: 82%;
+    transform: scale(.9) translate(-126px, -53px);
+}
+
+#dne-card-sonya-xb77 .card__description {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+
+    width: 153px;
+
+    color: black;
+}
+
+#dne-card-shaman .card__description {
+    position: absolute;
+    top: 60px;
+    color: white;
+}
+
+#dne-card-lucio .card__description {
+    position: absolute;
+    top: 55px;
+}
+
+#dne-card-class-collector .card__preview {
+    transform: scale(2.5) translateY(45px);
+}
+
+#dne-card-class-collector .card__description {
+    position: absolute;
+    bottom: 20px;
+
+    color: white;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-gm .card__header-left {
@@ -32,7 +107,7 @@
     bottom: 20px;
 
     color: white;
-    text-shadow: 1px 2px 5px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-resurrection .card {
@@ -49,7 +124,7 @@
     bottom: 10px;
 
     color: white;
-    text-shadow: 2px 1px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-i47 .card__description {
@@ -84,6 +159,31 @@
     z-index: 2;
 
     color: white;
+}
+
+#dne-card-vinyl-cyberpunk-triple .card__header {
+    position: relative;
+    z-index: 2;
+}
+
+#dne-card-vinyl-cyberpunk-triple .card__description {
+    position: absolute;
+    z-index: 2;
+    bottom: 35px;
+}
+
+#dne-card-vinyl-cyberpunk-triple .card__footer {
+    position: absolute;
+    z-index: 2;
+    bottom: 5px;
+}
+
+#dne-card-vinyl-cyberpunk-triple .card__preview {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    transform: scale(1.1);
 }
 
 #dne-card-v .card__preview-img {
@@ -143,7 +243,7 @@
     position: absolute;
     bottom: 30px;
     color: white;
-    text-shadow: 0 1.5px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-toxic .card__preview-img {
@@ -170,7 +270,7 @@
 
 #dne-card-dmt-breathing-no-rules .card__price {
     color: white;
-    text-shadow: 0 1.5px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-olivye .card__preview {
@@ -199,7 +299,7 @@
     padding-left: 59px;
 
     color: white;
-    text-shadow: 1px 2px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-mechanic .card__preview-img {
@@ -212,7 +312,7 @@
 
     color: white;
 
-    text-shadow: 1px 2px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-sansa-stark .card__preview {
@@ -244,7 +344,7 @@
     z-index: 1;
 
     color: #fff;
-    text-shadow: -1px 0px 5px #000000cc;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-class-rockrunner .card__header {
@@ -253,7 +353,7 @@
 }
 
 #dne-card-class-rockrunner .card__title {
-    text-shadow: -1px 0px 5px #000000cc;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-make-train-piece .card__header {
@@ -261,21 +361,21 @@
     z-index: 2;
 
     color: #fff;
-    text-shadow: -1px 0px 5px #000000cc;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-class-jeweller .card__description {
     position: absolute;
     bottom: 3px;
     color: white;
-    text-shadow: 1px 3px 9px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-class-barber .card__description {
     position: absolute;
     top: 140px;
     color: white;
-    text-shadow: 1px 3px 9px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-class-barber .card::after {
@@ -516,19 +616,19 @@
 #dne-card-make-dj-set .card__header {
     position: absolute;
     color: white;
-    text-shadow: 1px 3px 9px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-make-piece .card__header {
     position: absolute;
     color: white;
-    text-shadow: 1px 3px 9px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-make-train-piece .card__description {
     position: absolute;
     top: 50px;
-    text-shadow: -1px 1px 5px #656565;
+    text-shadow: 2px 1px 0 white;
 }
 
 #dne-card-call-marsellus .card__header {
@@ -541,12 +641,12 @@
     position: absolute;
     bottom: 120px;
     color: white;
-    text-shadow: -1px 1px 8px #1c1c1c;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-call-marsellus .card__price {
     color: white;
-    text-shadow: -1px 1px 8px #1c1c1c;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-forest-day .card__header {
@@ -557,7 +657,7 @@
 
 #dne-card-forest-day .card__price {
     color: white;
-    text-shadow: -1px 1px 8px #1c1c1c;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-call-marsellus .card__preview-img {
@@ -574,12 +674,12 @@
     position: absolute;
     bottom: 40px;
     color: white;
-    text-shadow: -1px 1px 8px #1c1c1c;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-lisova-mavka .card__price {
     color: white;
-    text-shadow: -1px 1px 8px #1c1c1c;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-lisova-mavka .card__preview-img {
@@ -590,7 +690,7 @@
     position: absolute;
     top: 90px;
     color: white;
-    text-shadow: -1px 1px 5px #656565;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-make-big-piece .card__footer {
@@ -613,7 +713,7 @@
     top: 50px;
 
     color: white;
-    text-shadow: 1px 3px 9px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-twins .card__preview-img {
@@ -712,6 +812,10 @@
     margin-bottom: -22px;
 }
 
+#dne-card-demo-mac-lofi .card__header-left {
+    max-width: 90%;
+}
+
 #dne-card-demo-mac-lofi .card__description {
     /*width: 95%;*/
     height: 160px;
@@ -766,7 +870,7 @@
     padding-top: 2px;
 
     color: white;
-    text-shadow: 1px 2px 4px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-album-i-no-longer-fear .card__title {
@@ -1100,28 +1204,28 @@ img {
     transform: scale(.9);
 }
 
-#dne-card-vinyl-i-am-chill-session .card {
-    color: white;
-    background-color: #1f1f36;
-}
+/*#dne-card-vinyl-i-am-chill-session .card {*/
+    /*color: white;*/
+    /*background-color: #1f1f36;*/
+/*}*/
 
-#dne-card-vinyl-i-am-chill-session .card__header {
-    position: absolute;
-    top: 50px;
-    z-index: 2;
-}
+/*#dne-card-vinyl-i-am-chill-session .card__header {*/
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*z-index: 2;*/
+/*}*/
 
-#dne-card-vinyl-i-am-chill-session .card__description {
-    position: absolute;
-    bottom: 35px;
-}
+/*#dne-card-vinyl-i-am-chill-session .card__description {*/
+/*    position: absolute;*/
+/*    bottom: 35px;*/
+/*}*/
 
 #dne-card-iup .card__preview-img {
     transform: scale(.9);
 }
 
 #dne-card-hired .card__title {
-    text-shadow: 2px 3px 0 black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-hired .card__header {
@@ -1152,7 +1256,7 @@ img {
     bottom: 20px;
     z-index: 2;
     color: white;
-    text-shadow: 1px 2px 5px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-makima .card__preview {
@@ -1163,7 +1267,7 @@ img {
     position: absolute;
     z-index: 2;
     color: white;
-    text-shadow: 1px 2px 5px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-dixi .card__description {
@@ -1171,7 +1275,7 @@ img {
     bottom: 20px;
     z-index: 2;
     color: white;
-    text-shadow: 1px 2px 5px black;
+    text-shadow: 2px 1px 0 black;
 }
 
 #dne-card-dixi .card__preview {

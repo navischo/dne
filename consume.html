@@ -6,11 +6,34 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CONSUME</title>
+
+    <!-- START FAVICON -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END FAVICON -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/blocks/buy-page.css">
-    <link rel="stylesheet" href="css/blocks/sale.css">
+    <link rel="stylesheet" href="css/standalone/blog.css">
+    <link rel="stylesheet" href="css/standalone/buy-page.css">
+    <link rel="stylesheet" href="css/standalone/sale.css">
+    <link rel="stylesheet" href="css/standalone/dodge.css">
 
 </head>
 <body class="buy-body">
@@ -44,15 +67,32 @@
                 <img src="img/buy/gold.png" alt="">
             </div>
             <div class="buy-content custom-scrollbar --y">
-            <header class="sale">
-                <div class="sale__banner">
-                    <img class="sale__banner-img" src="img/buy/summer-sale.png" alt="">
-                    <div class="sale__banner-screen">
-                        <h2 class="sale__banner-title">Літній розпродаж</h2>
-                        <p class="sale__banner-date">З 1 до 11 серпня, 20:00 за Києвом</p>
+                <header class="l-news__header">
+                    <div class="l-news__header-wrapper">
+                        <span class="l-news__header-mobile-decorations"></span>
+                        <div class="l-news__header-title">
+                            <span class="l-news__header-title-right"></span><a href="walls/wall-A17.html" target="_blank"><p>WALL</p></a>
+                        </div>
+                        <div class="l-news__header-title">
+                            <span class="l-news__header-title-right"></span><a href="game.html" target="_blank"><p>DEMO</p></a>
+                        </div>
+                        <div class="l-news__header-mobile-menu">
+                            <a href="./" target="_blank">Home</a>
+                            <a href="walls/wall-A17.html" target="_blank">WALL</a>
+                            <a href="game.html" target="_blank">DEMO</a>
+                        </div>
                     </div>
-                </div>
-            </header>
+                </header>
+                <img class="img-autumn-sale" src="img/buy/autumn_sale.gif" alt="">
+<!--            <header class="sale">-->
+<!--                <div class="sale__banner">-->
+<!--                    <img class="sale__banner-img" src="img/buy/autumn_sale.gif" alt="">-->
+<!--                    <div class="sale__banner-screen">-->
+<!--                        <h2 class="sale__banner-title">Літній розпродаж</h2>-->
+<!--                        <p class="sale__banner-date">З 1 до 11 серпня, 20:00 за Києвом</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </header>-->
             <div class="buy">
                 <h1 class="cybr-title buy__title">Does Not Exist</h1>
                 <p class="buy__subtitle">Competitive Board-n-Web Game...<br> about creating Rave of your Dream</p>
@@ -152,10 +192,11 @@
                             are never seen again. They say that magic works in the factory. This program will become your eyes and
                             hands.
                         </p>
-                        <p>
-                            Hello, my name is Navischo and this program was originally developed by me in winter Kyiv of 2023. Green House Art Residency provided all
+                        <p style="margin-top: 40px">
+                            Hello, my name is Navischo,<br> and this program was originally developed by me in winter Kyiv of 2023. Green House Art Residency provided all
                             the necessary resources for the development of this game during a full-scale Russian invasion to the
-                            territory of the sovereign state of Ukraine. The game is based on my favorite board games:
+                            territory of the sovereign state of Ukraine.<br>
+                            The game is based on my favorite board games:
                             Munchkin, Scythe, Fights of Battle Mages - and computer games: Cyberpunk 2077, Colossal Cave Adventure.
                             This version was implemented using JS+HTML+CSS and is available to run in any modern browser.
                         </p>
@@ -172,10 +213,23 @@
         </div>
     </div>
 </div>
+<div class="js-dodge dodge --bottom-right">
+    <p class="dodge__message"><a target="_blank">Like to swipe?</a></p>
+    <img class="dodge__img" src="img/dodge.png" alt="Dodge want you to swipe!" width="383" height="468">
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
+<script>
+    const dodgeNode = document.querySelector(".js-dodge");
+    setInterval(() => {
+        dodgeNode.classList.toggle("--hidden");
+    }, 30000);
+    dodgeNode.addEventListener("click", () => {
+        localStorage.setItem("tinder", "true");
+        location.href = "game.html";
+    });
+</script>
 <script>
     var menuButton = document.querySelector('.menu-button');
     var openMenu = function () {

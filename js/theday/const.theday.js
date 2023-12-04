@@ -6,6 +6,7 @@ import { DUNGE_NAMES } from "../inInteraction/interface.inInteraction.js";
 import { matchGenreBonus } from "../utils/matchGenreBonus.js";
 import { logIncome } from "../utils/logIncome.js";
 import { initLineup } from "../utils/initLineup.js";
+import { updTipRouter } from "../router/updTip.router.js";
 
 const SMITHS_TYPES = [
     {
@@ -231,7 +232,7 @@ const rareGuestsArr = [{
     isOnBoard: false
 }];
 const rareGuestsSet = new Set();
-win77.game.player.rareGuestsSet = rareGuestsSet;
+win77.game.rareGuestsSet = rareGuestsSet;
 rareGuestsArr.forEach((rareGuest) => {
    rareGuestsSet.add(rareGuest);
 });
@@ -350,7 +351,7 @@ const drawSmitsCard = (dataObj) => {
                     guest.remove();
                 }, 450);
                 console.log(`You say not today to ${dataObj.name}`, dataObj, win77.game);
-                // win77.game.event.settings.socialPoints++;
+                win77.giveSocialPointToPlayer();
                 // inviteGuest();
             });
         }
@@ -389,6 +390,7 @@ const matchCrewBonus = () => {
 }
 
 const matchEventIncome = (smithCard) => {
+    console.log("win77.game.event.result.income", win77.game.event.result.income);
     const cashOnEnter = matchCashOnEnter(smithCard);
     win77.game.event.result.cashOnEnter = win77.game.event.result.cashOnEnter + cashOnEnter;
 
@@ -421,6 +423,15 @@ const matchEventIncome = (smithCard) => {
 const passGuest = (smithCard) => {
     win77.game.event.settings.guestsCount = win77.game.event.settings.guestsCount + smithCard.plusCount;
     win77.game.event.settings.guests[`${isMale(smithCard.name)}Count`] = win77.game.event.settings.guests[`${isMale(smithCard.name)}Count`] + smithCard.plusCount;
+
+    if (win77.game.event.settings.guests.set.size !== 0) {
+        const prevGuest = Array.from(win77.game.event.settings.guests.set)[win77.game.event.settings.guests.set.size - 1];
+        if (prevGuest.name === smithCard.name) {
+            win77.giveSocialPointToPlayer();
+            console.log(`Guest by name ${smithCard.name} meet yourself from another universe. Get +1 social point! Your social points:`, win77.game.event.settings.socialPoints);
+        }
+    }
+
     win77.game.event.settings.guests.set.add(smithCard);
 }
 
@@ -436,7 +447,7 @@ const useSmithsCard = (interval = undefined) => {
         smithCard.plusCount = getRandomInt(14);
         console.log(`Security: Seems like ${smithCard.name} coming to your Event from strange portal with ${smithCard.plusCount} friends. Let them pass?`);
 
-        win77.game.event.settings.socialPoints--;
+        win77.getSocialPointsFromPlayer(1);
 
         drawSmitsCard(smithCard);
     } else {
@@ -447,6 +458,7 @@ const useSmithsCard = (interval = undefined) => {
         const portalToClose = document.querySelector(".js-rick-portal");
         if (portalToClose) {
             portalToClose.addEventListener("click", reloadTheday);
+            portalToClose.classList.add("--exit-label");
         }
     }
 }
@@ -463,18 +475,17 @@ const getScene = () => {
     const setup = {
         parent: sceneElement.querySelector(".setup")
     };
-    setup.controllerSelector = "#setup";
     setup.lineupSelector = "#lineup";
-    setup.left = setup.parent.querySelector(".setup__left");
-    setup.right = setup.parent.querySelector(".setup__right");
     const executiveSelector = "#executive";
+    const avatarSelector = "#avatar";
 
     return {
         setup,
+        avatarSelector: avatarSelector,
         executiveSelector: executiveSelector,
         data: {
-            executive: win77.game.player.npc,
-            controller: win77.game.player.loot,
+            avatar: win77.game.player.avatar,
+            executive: win77.game.player.loot,
             lineup: win77.game.table
         }
     }
@@ -483,9 +494,10 @@ const getScene = () => {
 const useSmithsCards = () => {
     const scene = getScene();
     // console.log(`${win77.game.player.id} getSceneData()`, scene);
+    drawLootCards(scene.data.avatar, scene.avatarSelector);
     drawLootCards(scene.data.executive, scene.executiveSelector);
-    const teamCards = document.querySelectorAll(`${scene.executiveSelector} .card`);
-    teamCards.forEach((teamCard) => {
+    const executiveCards = document.querySelectorAll(`${scene.executiveSelector} .card`);
+    executiveCards.forEach((teamCard) => {
         // console.log(`teamCard`, teamCard, teamCard.parentNode);
         teamCard.parentNode.classList.add("swiper-slide");
     });
@@ -493,7 +505,6 @@ const useSmithsCards = () => {
         effect: "cards",
         grabCursor: true,
     });
-    drawLootCards(scene.data.controller, scene.setup.controllerSelector);
     drawLootCards(scene.data.lineup, scene.setup.lineupSelector);
     initLineup();
     document.querySelector(`${scene.setup.lineupSelector}`).classList.add("--play");
@@ -504,9 +515,11 @@ const useSmithsCards = () => {
 
         if (socialPoints === 0) {
             clearInterval(interval);
+            win77.router.matchmaking ? updTipRouter("Finish round") : "";
         }
     };
-    const interval = setInterval(inviteGuestByInterval, 5000);
+    const secToNext = getRandomInt(7);
+    const interval = setInterval(inviteGuestByInterval, +`${secToNext > 3 ? secToNext : 3}000`);
 }
 
 // const clearSmithsSet = () => {

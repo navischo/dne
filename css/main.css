@@ -33,7 +33,7 @@
 @import "blocks/hex-btn.css";
 @import "blocks/sky-nav.css";
 @import "blocks/chess.css";
-@import "blocks/wall.css";
+@import "standalone/wall.css";
 @import "blocks/hypno.css";
 @import "blocks/custom-scrollbar.css";
 @import "blocks/week.css";
@@ -46,9 +46,18 @@
 @import "blocks/card-preview.css";
 @import "blocks/bank.css";
 @import "blocks/cyber-strike.css";
-@import "blocks/mathmaking.css";
+@import "blocks/matchmaking.css";
 @import "blocks/squad.css";
+@import "blocks/squad-unit.css";
 @import "blocks/tinder.css";
+@import "blocks/lollyball.css";
+@import "blocks/my.css";
+@import "blocks/house.css";
+@import "blocks/terminal.css";
+@import "blocks/ctrl-keys.css";
+@import "blocks/player-for-mm.css";
+@import "blocks/cards-reward.css";
+@import "blocks/achievement.css";
 
 /*CUSTOMIZATION*/
 @import "./i-customization.css";

@@ -92,16 +92,16 @@ const currentEventMarkup = (currentEventObj) =>
 
 const drawCurrentEvent = () => {
     const parent = document.querySelector(".js-current-event");
-    parent.innerHTML = currentEventMarkup(win77.game.player.calendar.currentEvent);
+    parent.innerHTML = currentEventMarkup(win77.game.calendar.currentEvent);
 }
 
 const trackYourDays = () => {
     const allDayNodes = document.querySelectorAll(".your-day");
     const allDays = [];
-    win77.game.player.calendar.weekArr.forEach((week, weekIndex) => {
+    win77.game.calendar.weekArr.forEach((week, weekIndex) => {
         week.days.forEach((day, dayIndex) => {
             allDays.push(day);
-            win77.game.player.calendar.weekArr[weekIndex].days[dayIndex].node = allDayNodes[weekIndex * 6 + dayIndex];
+            win77.game.calendar.weekArr[weekIndex].days[dayIndex].node = allDayNodes[weekIndex * 6 + dayIndex];
         });
     });
     allDayNodes.forEach((dayNode, i) => {
@@ -110,13 +110,13 @@ const trackYourDays = () => {
 
     win77.currentDayNode = document.querySelector(".js-day-name");
 
-    console.log(allDayNodes);
+    // console.log(allDayNodes);
 }
 
 const updCalendarNode = () => {
     const allDayNodes = document.querySelectorAll(".your-day");
     const allDays = [];
-    win77.game.player.calendar.weekArr.forEach((week) => {
+    win77.game.calendar.weekArr.forEach((week) => {
         week.days.forEach((day) => {
             allDays.push(day);
         });
@@ -131,13 +131,13 @@ const updCalendarNode = () => {
         }
     })
 
-    console.log(allDayNodes);
+    // console.log(allDayNodes);
 }
 
 const finishDay = (income = null) => {
     let dayChecked = false;
 
-    win77.game.player.calendar.weekArr.forEach((week) => {
+    win77.game.calendar.weekArr.forEach((week) => {
         week.days.forEach((day) => {
             if (!day.done && !dayChecked) {
                 day.done = true;
@@ -163,10 +163,10 @@ win77.finishDay = finishDay;
 const setCurrentDay = () => {
     let dayChecked = false;
 
-    win77.game.player.calendar.weekArr.forEach((week) => {
+    win77.game.calendar.weekArr.forEach((week) => {
         week.days.forEach((day) => {
             if (!day.done && !dayChecked) {
-                win77.game.player.calendar.currentDay = day;
+                win77.game.calendar.currentDay = day;
                 win77.currentDayNode.textContent = day.name;
                 day.name.length > 6 ? win77.currentDayNode.classList.add("--large") : win77.currentDayNode.classList.add("--remove");
                 dayChecked = true;

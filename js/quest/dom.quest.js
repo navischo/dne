@@ -49,7 +49,9 @@ const initQuest = (questObj) => {
         title.textContent = questData.name;
         description.textContent = questData.description;
         bonus.textContent = `+${questData.bonus}`;
-        minimap.src = questData.minimap;
+        if (questData.minimap) {
+            minimap.src = questData.minimap;
+        }
 
         redrawCheckpoints(questData);
     }
@@ -130,8 +132,8 @@ const initQuest = (questObj) => {
         win77.giveSkillPointsToPlayer(1);
         updBalanceNode();
 
-        win77.game.player.score = win77.game.player.score + questObj.core.bonus;
-        updScore();
+        // win77.game.player.score = win77.game.player.score + questObj.core.bonus;
+        // updScore();
         clearTimer();
 
         finishBtn.classList.remove("--visible");

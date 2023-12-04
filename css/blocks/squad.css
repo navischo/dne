@@ -2,11 +2,8 @@
     display: flex;
     justify-content: center;
     max-width: 1220px;
-    padding-top: 240px;
+    padding-top: 210px;
     margin: 0 auto;
-}
-
-.squad__cell {
 }
 
 .squad__cell + .squad__cell {
@@ -21,6 +18,29 @@
     justify-content: center;
     width: 300px;
     /*padding-top: 20px;*/
+
+    transition: .2s ease-in-out;
+}
+
+.squad__cell.--walking {
+    animation: rotate-in-2-fwd-ccw 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation-delay: .3s;
+    transform: translateZ(0) rotate(0) scale(1.2);
+}
+
+@keyframes rotate-in-2-fwd-ccw {
+    0% {
+        transform: translateZ(-200px) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateZ(0) rotate(0) scale(1.2);
+        opacity: 1;
+    }
+}
+
+.squad__cell .card__controls {
+    display: none;
 }
 
 .squad__plus {

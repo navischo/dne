@@ -2,8 +2,6 @@ import { CARD_TYPES } from "../cards/const.cards.js";
 import { win77 } from "../dne-cli.js";
 import { initInventoryPopupJquery } from "../utils/initInventoryPopup.jquery.js";
 
-
-
 const inventoryMarkup = `
 <div id="project-obj" class="fw-d-none project-obj inventory">
     project:&nbsp;&nbsp;{<br>
@@ -24,17 +22,25 @@ const inventoryMarkup = `
     &nbsp;&nbsp;<br>}</span>
 </div>
 <div class="player-obj inventory">
-    player:<br>&nbsp;&nbsp;{<br>
+<span class="js-matchmaking-wrap fw-d-none">
+    mm:&nbsp;{
+    <span id="matchmaking-list" class="inventory-items"></span>
+    }<br><br>
+    </span>
+    <span class="js-player-wrap">
+    player:<br>&nbsp;&nbsp;{<span class="js-class-wrap fw-d-none"><br>
     &nbsp;&nbsp;<span data-advice-id="class">class:</span><br>&nbsp;&nbsp;{&nbsp;
     <span id="player-class-list" class="inventory-items"></span>
-    &nbsp;},
+    &nbsp;}</span><span class="js-crew-wrap fw-d-none">,
     <br>&nbsp;&nbsp;<span data-advice-id="crew">crew:</span>&nbsp;{&nbsp;<br>
     <span id="player-crew-list" class="inventory-items"></span>
-    &nbsp;&nbsp;}<span class="js-dia-wrap fw-d-none">,
+    &nbsp;&nbsp;}</span><span class="js-dia-wrap fw-d-none">,
     <br>&nbsp;&nbsp;<span data-advice-id="dia">dia:</span>&nbsp;{&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;<span id="player-dia-list" class="inventory-items"></span>
     &nbsp;&nbsp;}</span>
-    <br>}<br><br><div class="js-in-car"></div>
+    <br>}<br><br>
+    </span>
+    <div class="js-in-car"></div>
     <a href="#nokia-popup" class="js-phone inventory-item">call me()</a>
 </div>
 <div class="inventory">
@@ -47,7 +53,7 @@ const inventoryMarkup = `
 </div>
 
 `;
-document.querySelector(".swiper").insertAdjacentHTML("afterend", inventoryMarkup);
+document.querySelector(".swiper")?.insertAdjacentHTML("afterend", inventoryMarkup);
 
 
 const carInventoryMarkup = `
@@ -90,6 +96,19 @@ const appendCardToInventory = (cardData, cardType = CARD_TYPES.loot) => {
     return newListItem;
 }
 
+const appendPlayerToInventory = (playerId) => {
+    const matchmakingList = document.querySelector("#matchmaking-list");
+    const newListItem = document.createElement("a");
+    newListItem.classList.add("inventory-item");
+    newListItem.textContent = playerId;
+
+    newListItem.addEventListener("click", (e) => {
+        win77.switchPlayer(playerId);
+    });
+
+    matchmakingList.appendChild(newListItem);
+}
+
 const inventory = {
     append: appendCardToInventory,
     clear: () => {
@@ -98,6 +117,7 @@ const inventory = {
         cardNodesByType.npc.innerHTML = ``;
         cardNodesByType.sound.innerHTML = ``;
         cardNodesByType.dia.innerHTML = ``;
+        document.querySelector("#matchmaking-list").innerHTML = ``;
     }
 }
 
@@ -143,7 +163,34 @@ const initInventory = () => {
         initCarInventory(carCard);
     });
 
-    if (win77.game.player.lvl >= 3) {
+    const matchmakingWrap = document.querySelector(".js-matchmaking-wrap");
+    if (win77.router?.matchmaking) {
+        win77.router.playersQueue.forEach((playerId) => {
+            // const playerObj = win77.findPlayerObj(playerId);
+            // appendPlayerToInventory(playerObj.avatar[0], CARD_TYPES.avatar);
+            appendPlayerToInventory(playerId);
+        });
+        matchmakingWrap.classList.remove("fw-d-none");
+    } else {
+        matchmakingWrap.classList.add("fw-d-none");
+    }
+
+    const playerWrap = document.querySelector(".js-player-wrap");
+    if (!(win77.game.player.class.size > 0) && !(win77.game.player.npc.size > 0) && !(win77.game.player.dia.size > 0)) {
+        playerWrap.classList.add("fw-d-none");
+    } else {
+        playerWrap.classList.remove("fw-d-none");
+    }
+
+    if (win77.game.player.class.size > 0) {
+        document.querySelector(".js-class-wrap").classList.remove("fw-d-none");
+    }
+
+    if (win77.game.player.npc.size > 0) {
+        document.querySelector(".js-crew-wrap").classList.remove("fw-d-none");
+    }
+
+    if (win77.game.player.lvl >= 3 && win77.game.player.dia.size > 0) {
         document.querySelector(".js-dia-wrap").classList.remove("fw-d-none");
     }
 

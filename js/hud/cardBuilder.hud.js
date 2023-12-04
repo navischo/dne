@@ -1,5 +1,4 @@
 import { DNELootCard } from "../cards/interface.cards.js";
-import { getRandomInt } from "../utils/getCardById.js";
 import { isSetHasId } from "../utils/isSetHasId.js";
 import { updBalanceNode } from "./balance.hud.js";
 import { setSoundStat } from "../utils/setSoundStat.js";
@@ -101,6 +100,7 @@ const buildCard = (builderData) => {
         updBalanceNode();
         win77.game.catalog._custom.add(cardData);
         // moveCardById(cardData.id, allCards, win77.game.player[cardData.type]);
+        localStorage.setItem(`custom-${cardData.id}`, JSON.stringify(cardData));
         win77.game.player.sound.add(cardData);
         initInventory();
     } else {

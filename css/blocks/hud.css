@@ -182,6 +182,66 @@ body {
     transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
 
+.js-open-background-select {
+    cursor: pointer;
+}
+
+.js-close-background-select {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+}
+
+.all-background {
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s ease-in;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    background-color: var(--colors-bg--500);
+    background-image: radial-gradient( ellipse at 33% 10%, #461616 0%, transparent 75% );
+}
+
+.all-background.--visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.all-background.--select {
+    z-index: 50;
+
+}
+
+.all-background.--select .background-in-all {
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.all-background.--select .background-in-all:hover {
+    transform: translateY(-2px);
+    box-shadow: 2px 7px 15px 1px black;
+}
+
+.background-in-all {
+    display: flex;
+    width: 160px;
+    height: 90px;
+
+    background-size: cover!important;
+    background-repeat: no-repeat;
+    background-position: center!important;
+}
+
 .background-single {
     /*background: url("../../libs/screen/screen-hud--spalah-2@2x1.jpg")!important;*/
     /*background: url("../../libs/screen/screen-nohud--new-place.jpg")!important;*/
@@ -195,7 +255,8 @@ body {
     background-image: url("../../libs/screen/screen-nohud--new-place.jpg")!important;
 }
 
-.background-single[data-lvl="1"] {
+.background-single[data-lvl="1"],
+.background-single.--me {
     background-image: url("../../libs/screen/screen-nohud--me.jpg")!important;
 }
 
@@ -206,6 +267,22 @@ body {
 body.js-tab {
     /*filter: invert(1);*/
     /*overflow: hidden;*/
+}
+
+#bonus-counter {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    z-index: 12;
+    transform: translateX(-50%);
+}
+
+#bonus-counter input {
+    width: 80px;
+    padding: 8px 14px;
+
+    font-size: 2em;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 .hand {
@@ -233,6 +310,14 @@ body.js-tab {
     transform: translateY(-100%);
 }
 
+#invader-score {
+    color: #da0030;
+}
+
+#savior-score {
+    color: #5ff3d0;
+}
+
 .score {
     position: fixed;
     top: 0;
@@ -248,6 +333,19 @@ body.js-tab {
     transform: translateX(-50%);
 
     text-shadow: 3px 2px black;
+}
+
+.score.--round {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+
+    display: flex;
+    font-size: 36px;
+}
+
+.score.--round > * {
+    margin: 0 25px;
 }
 
 .score input {
@@ -270,7 +368,7 @@ body.js-tab {
 }
 
 body {
-    color: black;
+    /*color: black;*/
 }
 
 .table {
@@ -287,6 +385,8 @@ body {
 }
 
 .table__cards {
+    position: relative;
+
     display: flex;
     max-width: 1520px;
     flex-wrap: wrap;
@@ -302,7 +402,7 @@ body {
 
     position: absolute;
     top: 25px;
-    left: 220px;
+    left: 20px;
 
     font-family: "Press Start 2p", sans-serif;
     font-size: 30px;
@@ -334,15 +434,42 @@ body {
 }
 
 
-.time {
+.timing {
     position: fixed;
-    bottom: 0;
+    top: 14px;
+    right: 228px;
     z-index: 30;
-    left: 50%;
-    transform: translateX(-50%);
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+
+    display: flex;
+    max-width: 360px;
+    width: 100%;
 
     font-family: "JetBrains Mono", monospace;
+}
 
+.timing__sec {
+    margin-right: 6px;
+    padding: 8px 12px;
+
+    color: yellow;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
+}
+
+.timing__line {
+    padding: 8px 12px;
+
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
 }
 
 .hud-top {
@@ -428,6 +555,42 @@ body {
     top: -16px;
 
     font-size: 2em;
+}
+
+.next-btns.--fixed {
+    position: fixed;
+    right: 20px;
+    top: 68px;
+    z-index: 10;
+}
+
+button.next-btn {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    padding: 7px;
+    /* border-right: 2px solid var(--light-color); */
+
+    overflow: hidden;
+    cursor: pointer;
+
+    color: white;
+    font-family: "Press Start 2P", "JetBrains Mono", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+
+    border-radius: 0;
+}
+
+button.next-btn.--visible {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 
 .hud-btn {

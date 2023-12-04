@@ -1,5 +1,5 @@
-import { initDialog, TITLES_OF_DIALOGS, DIALOGS } from "../hud/chat.hud.jquery.js";
-
+import { TITLES_OF_DIALOGS, DIALOGS } from "../hud/chat.hud.js";
+import { parseDialogBody } from "../structure/admin/direct.page.js";
 const initHotline = (number) => {
     const dialogObj = {
         title: TITLES_OF_DIALOGS[number],
@@ -15,26 +15,23 @@ const initHotline = (number) => {
             }
 
             if (dialogObj) {
-                const hotlineParent = document.querySelector(".js-vertical-feed");
-                initDialog(dialogObj.body, hotlineParent);
+                parseDialogBody(dialogObj.body, ".js-vertical-feed");
             }
         }
     }
 
     hotline.displayNewMessages(dialogObj);
 
-    const dialogVerticalNode = document.querySelector(".dialog-vertical");
-    let displayMessageNodeArr = document.querySelectorAll(".message");
-    displayMessageNodeArr.forEach((messageNode) => {
-        messageNode.addEventListener("click", () => {
-            messageNode.remove();
-            displayMessageNodeArr = document.querySelectorAll(".message");
-            if (displayMessageNodeArr.length === 0) {
-                dialogVerticalNode.classList.add("--zero-inbox");
-            }
-        });
-    });
-
+    // let displayMessageNodeArr = document.querySelectorAll(".message");
+    // displayMessageNodeArr.forEach((messageNode) => {
+        // messageNode.addEventListener("click", () => {
+        //     // messageNode.remove();
+        //     displayMessageNodeArr = document.querySelectorAll(".message");
+        //     if (displayMessageNodeArr.length === 0) {
+        //         dialogVerticalNode.classList.add("--zero-inbox");
+        //     }
+        // });
+    // });
     return hotline;
 }
 

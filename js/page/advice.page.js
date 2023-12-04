@@ -75,8 +75,17 @@ const ADVICES = [
         id: `freedomCityNet`,
         title: `FREEDOM-CITY NETWIRE`,
         descr: `Набір програм та нейромереж, об'єднаних в децентралізовану, недосяжну зовні, локальну мережу, що використовується для менеджменту міста. Легкодоступна і самовідновна, вона швидко розповсюдилась серед локальних спільнот, які навчилися модифікувати ядро системи та налаштовувати її під власні потреби.<br><br> Під час Блекауту децентралізована система майже не постраждала і швидко стала найдоступнішою альтернативою централізованій мережі, що в свою чергу зазнала повного краху.<br><br> За роки відсутності і натяку на існування більш-менш великих глобальних мереж FC стала дійсно масовою, наразі більшість просунутих великих міст використовують цю систему як ядро власних ОС.<br><br>Великі і малі локальні спільноти, просунуті користувачі, нетраннери та цілі корпорації по всьому світу продовжують розробляти нові модифікації.`
+    },
+    {
+        id: `loadSound`,
+        title: `Свій саунд`,
+        descr: `Дозволяє просто зараз додати в свій інвентар<br>власний саунд.<br><br> Обкладинку необхідно зберегти в будь-якому хмарному сховищі та вставити посилання на неї в поле IMAGE SOURCE.`
+    },
+    {
+        id: `selectBackground`,
+        title: `Свій фон`,
+        descr: `Дозволяє просто зараз встановити будь-який фон серед наявних у файлах гри.<br><br> Щоб додати власний фон достатньо додати своє зображення в папку ./libs/screen та записати його ім'я в об'єкт SCREEN_NAMES(js/page/screen.page.js)`
     }
-
 ];
 
 const getAdviceMarkup = (title, descr) =>
@@ -104,5 +113,19 @@ const drawAdvice = (advice = ADVICES[getRandomInt(ADVICES.length)]) => {
         .querySelector("body")
         .appendChild(parent);
 }
+
+const showTip = (e) => {
+    // console.log(`You ask about advice for..`, e.target, e.target.dataset.adviceId);
+    if (e.target.dataset.adviceId) {
+        const askedAdvice = ADVICES.find((advice) => advice.id === e.target.dataset.adviceId);
+        console.log(`Yes, I know something about ${e.target.dataset.adviceId}. Here `, askedAdvice);
+        drawAdvice(askedAdvice);
+    } else {
+        console.log(`Advice you asking for is unavailable. So i give you random`, ADVICES[getRandomInt(ADVICES.length)]);
+    }
+}
+
+const body = document.querySelector("body");
+body.addEventListener("auxclick", showTip);
 
 export { ADVICES, drawAdvice };

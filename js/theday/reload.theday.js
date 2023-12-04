@@ -8,8 +8,12 @@ import { drawCheck } from "./check.theday.js";
 import { parseTopsString, topsString } from "./endgame.theday.js";
 import { isSetHasId } from "../utils/isSetHasId.js";
 import { matchGenreBonus } from "../utils/matchGenreBonus.js";
+import { giveIncomeTo } from "../utils/giveIncomeTo.js";
+import { updExecutive } from "../hud/table.hud.js";
+import { selectCardToSave } from "../utils/selectCardToSave.js";
 
 const reloadTheday = () => {
+    console.log("win77.game.event.result", win77.game.event.result);
     Array.from(win77.game.event.settings.guests.set).forEach((smithsCard) => {
         matchEventIncome(smithsCard);
     });
@@ -44,11 +48,26 @@ const reloadTheday = () => {
             moveCardBackAfterRent(cardId);
         });
     }
-    win77.giveIncomeToPlayer(win77.game.event.result.income);
-    win77.giveSkillPointsToPlayer(1);
+
+    if (win77.game.alliance) {
+        const saviorReward = Math.round(win77.game.event.result.income / 100 * win77.game.alliance.reward);
+        win77.giveIncomeToPlayer(win77.game.event.result.income - saviorReward);
+        win77.giveSkillPointsToPlayer(1);
+        giveIncomeTo(win77.game.alliance.savior, saviorReward);
+        win77.giveSkillPointsTo(win77.game.alliance.savior, 1);
+        win77.game.alliance = false;
+        document.querySelector("#savior-score").remove();
+        document.querySelector(".js-phone").classList.remove("fw-d-none-i");
+        updExecutive();
+    } else {
+        win77.giveIncomeToPlayer(win77.game.event.result.income);
+        win77.giveSkillPointsToPlayer(2);
+    }
+
     win77.giveEnergyPointsToPlayer(1);
     console.log("!win77.game.final", win77.game.final, win77.game.player.balance.skillPoints, win77.game.player.balance.skillPoints === 4);
     if (win77.game.final === false) { // win77.game.player.balance.skillPoints % 10
+        win77.matchGameResult();
         drawCheck(win77.game.event.result, "#dne-page-up");
     } else {
         drawCheck(parseTopsString(localStorage.getItem("tops")), "#dne-page-up");
@@ -57,23 +76,35 @@ const reloadTheday = () => {
     initScore();
     updScore();
     // win77.pokeButton.dia.clearSmithsSet();
+    win77.game.event.lineupLength = 0;
     win77.game.event.settings.guests.set.clear();
-    win77.game.player.rareGuestsSet.forEach((guest) => {
+    win77.game.event.result.income = 0;
+    win77.game.event.result.cashOnEnter = 0;
+    win77.game.event.result.cashOnBar = 0;
+    win77.game.event.result.impactBonus = 0;
+    win77.game.event.settings.guests.manCount = 0;
+    win77.game.event.settings.guests.womanCount = 0;
+    win77.budgetAccepted = false;
+    win77.game.rareGuestsSet.forEach((guest) => {
         guest.isOnBoard = false;
     });
 
 
-    console.log("Cards from table", win77.game.table);
-    win77.game.table.forEach((card) => {
-        moveCardById(card.id, win77.game.table, win77.game.player.sound);
-    });
+    win77.selectCardToSave = true;
+    // selectCardToSave();
+    // win77.game.table.forEach((card) => {
+        // moveCardById(card.id, win77.game.table, win77.game.player.sound);
+    // });
 
     win77.updBalanceHUD();
 
     initInventory();
     updTable();
-    win77.putCardAtPlayersHand(5 - win77.game.player.hand.size);
+    // win77.putCardAtPlayersHand(5 - win77.game.player.hand.size);
+    win77.giveCardsTo(win77.game.player.id, win77.game.options.cardsAfterTurn); // only 2-5 cards after turn
     updHand();
+
+    document.querySelector(".js-toggle-catalog-controls").classList.remove("fw-d-none-i");
 
     win77.finishDay(win77.game.event.result.income);
     win77.setCurrentDay();

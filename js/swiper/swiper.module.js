@@ -6,7 +6,8 @@ import { eventMarkup } from "./markup/event.markup.js";
 import { initCollector } from "../utils/initCollector.js";
 
 import { win77 } from "../dne-cli.js";
-// import { initProfile } from "../hud/chat.hud.jquery.js";
+import { makeWallSprayable } from "../utils/makeWallSprayable.js";
+// import { initProfile } from "../hud/chat.hud.js";
 
 // API code
 const swiper = new Swiper('.js-swiper-screen', {
@@ -99,7 +100,7 @@ win77.eventSwiper = new Swiper("#event-swiper", {
     // },
 });
 win77.eventSwiper.on("slideChange", (e) => {
-    console.log("e.activeIndex", e, e.activeIndex);
+    // console.log("e.activeIndex", e, e.activeIndex);
     if (e.activeIndex === 1) {
         if (!win77.collector) {
             win77.startCollector();
@@ -124,7 +125,6 @@ swiper.on('slideChange', function (e) {
 });
 // swiper.slideTo(0, 0);
 win77.swiper = swiper;
-
 // single exports output
 export { swiper };
 
